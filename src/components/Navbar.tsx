@@ -29,8 +29,9 @@ const Navbar = () => {
       }`}
     >
       <div className="section-container py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold font-mono text-primary">
-          {'<HB />'}
+        <a href="#" className="text-xl font-bold font-mono flex items-center gap-2">
+          <img src="/favicon.png" alt="BW Logo" className="w-8 h-8 rounded" />
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{'<BW />'}</span>
         </a>
 
         {/* Desktop Nav */}
