@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import CodingProfiles from '@/components/CodingProfiles';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Achievements from '@/components/Achievements';
@@ -15,16 +16,16 @@ const Index = () => {
         <title>Husain Baghwala | AI Engineer & Full Stack Developer</title>
         <meta
           name="description"
-          content="AI Engineer at Walkover Web Solutions specializing in LLM integration, LangChain, RAG pipelines, and full-stack development with Node.js and Python."
+          content="AI Engineer at Walkover Web Solutions specializing in LLM integration, LangChain, RAG pipelines, and full-stack development with Node.js and Python. Top 19% LeetCode, #1 GFG University Rank."
         />
         <meta
           name="keywords"
-          content="Husain Baghwala, AI Engineer, Full Stack Developer, LangChain, Python, Node.js, LLM, RAG, Machine Learning"
+          content="Husain Baghwala, AI Engineer, Full Stack Developer, LangChain, Python, Node.js, LLM, RAG, Machine Learning, LeetCode, GeeksForGeeks"
         />
         <meta property="og:title" content="Husain Baghwala | AI Engineer" />
         <meta
           property="og:description"
-          content="AI Engineer specializing in LLM integration and full-stack development"
+          content="AI Engineer specializing in LLM integration and full-stack development. Top 19% LeetCode."
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://husainbaghwala.dev" />
@@ -35,6 +36,7 @@ const Index = () => {
         <main>
           <Hero />
           <About />
+          <CodingProfiles />
           <Experience />
           <Projects />
           <Achievements />

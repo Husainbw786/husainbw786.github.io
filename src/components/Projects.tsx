@@ -1,32 +1,35 @@
-import { ExternalLink, Github, Bot, Users, FileText, BarChart3 } from 'lucide-react';
+import { ExternalLink, Github, Bot, Users, FileText, BarChart3, Code, Layers } from 'lucide-react';
 
 const projects = [
   {
     title: 'AI Screening Tool',
     description:
-      'A flexible interview tool backend leveraging OpenAI GPT-4o API for generating personalized questions. Features real-time communication analysis and a high-performance API framework for secure interview management.',
-    tech: ['Python', 'FastAPI', 'OpenAI', 'GPT-4o'],
+      'A flexible interview tool backend leveraging OpenAI GPT-4o API for generating personalized questions. Features real-time communication analysis and a high-performance API framework for secure interview management and audio processing.',
+    tech: ['Python', 'FastAPI', 'OpenAI', 'GPT-4o', 'WebSocket'],
     icon: Bot,
     github: 'https://github.com/Husainbw786/Screening-Tool',
     gradient: 'from-primary to-accent',
+    featured: true,
   },
   {
-    title: 'Employee Data Scraper',
+    title: 'Company Data Scraper',
     description:
-      'Automated web scraping solution for extracting employee data efficiently. Built with Python for reliable data extraction and processing capabilities.',
-    tech: ['Python', 'Web Scraping', 'Data Processing'],
+      'Automated web scraping solution for extracting company and employee data efficiently. Built with Python for reliable data extraction and processing capabilities.',
+    tech: ['Python', 'Web Scraping', 'Data Processing', 'API'],
     icon: Users,
-    github: 'https://github.com/Husainbw786/Employee-data-Scrapper-main',
+    github: 'https://github.com/Husainbw786/company-scrapper-backend',
     gradient: 'from-accent to-primary',
+    featured: true,
   },
   {
     title: 'Resume Crafter',
     description:
       'An intelligent resume building tool with AI-powered suggestions for crafting professional resumes tailored to specific job requirements.',
-    tech: ['JavaScript', 'Node.js', 'AI Integration'],
+    tech: ['JavaScript', 'Node.js', 'AI Integration', 'REST API'],
     icon: FileText,
     github: 'https://github.com/Husainbw786/Resume-Crafter',
     gradient: 'from-primary to-cyan-400',
+    featured: false,
   },
   {
     title: 'Analytics Dashboard',
@@ -36,75 +39,129 @@ const projects = [
     icon: BarChart3,
     github: 'https://github.com/Husainbw786/Dashboard',
     gradient: 'from-cyan-400 to-accent',
+    featured: false,
+  },
+  {
+    title: 'LeetCode Solutions',
+    description:
+      'Repository of optimized solutions to LeetCode problems, demonstrating proficiency in data structures, algorithms, and competitive programming.',
+    tech: ['C++', 'Algorithms', 'Data Structures'],
+    icon: Code,
+    github: 'https://github.com/Husainbw786/LeetCode',
+    gradient: 'from-yellow-400 to-orange-500',
+    featured: false,
+  },
+  {
+    title: 'Employee Management System',
+    description:
+      'A comprehensive system for managing employee data, including CRUD operations, search functionality, and data analytics.',
+    tech: ['TypeScript', 'React', 'Node.js', 'PostgreSQL'],
+    icon: Layers,
+    github: 'https://github.com/Husainbw786/Employee-Management-System',
+    gradient: 'from-green-400 to-primary',
+    featured: false,
   },
 ];
 
 const Projects = () => {
+  const featuredProjects = projects.filter((p) => p.featured);
+  const otherProjects = projects.filter((p) => !p.featured);
+
   return (
     <section id="projects" className="py-32">
       <div className="section-container">
         <h2 className="flex items-center gap-4 text-2xl md:text-3xl font-bold mb-16">
-          <span className="font-mono text-primary">03.</span>
+          <span className="font-mono text-primary">04.</span>
           Featured Projects
           <span className="flex-1 h-px bg-border ml-4" />
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+        {/* Featured Projects */}
+        <div className="space-y-12 mb-16">
+          {featuredProjects.map((project, index) => (
             <div
               key={index}
-              className="group glass-card p-6 hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
+              className={`grid md:grid-cols-2 gap-8 items-center ${
+                index % 2 === 1 ? 'md:flex-row-reverse' : ''
+              }`}
             >
-              {/* Gradient Glow on Hover */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-              />
-
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`p-4 rounded-xl bg-gradient-to-br ${project.gradient}`}>
-                    <project.icon className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div className="flex gap-3">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Github size={20} />
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  </div>
+              <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                <p className="font-mono text-primary text-sm mb-2">Featured Project</p>
+                <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
+                <div className="glass-card p-6 mb-4">
+                  <p className="text-muted-foreground leading-relaxed">{project.description}</p>
                 </div>
-
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-muted text-muted-foreground rounded font-mono text-xs"
-                    >
+                    <span key={tech} className="px-2 py-1 bg-muted text-muted-foreground rounded font-mono text-xs">
                       {tech}
                     </span>
                   ))}
                 </div>
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Github size={22} />
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <ExternalLink size={22} />
+                  </a>
+                </div>
+              </div>
+              <div className={`relative ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                <div className={`aspect-video rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}>
+                  <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
+                    <project.icon className="w-16 h-16 text-primary/50" />
+                  </div>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Other Projects */}
+        <h3 className="text-xl font-semibold text-center mb-8">Other Noteworthy Projects</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {otherProjects.map((project, index) => (
+            <a
+              key={index}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group glass-card p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${project.gradient}`}>
+                  <project.icon className="w-5 h-5 text-primary-foreground" />
+                </div>
+                <ExternalLink size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+              </div>
+
+              <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                {project.title}
+              </h4>
+
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {project.tech.slice(0, 3).map((tech) => (
+                  <span key={tech} className="px-2 py-0.5 bg-muted text-muted-foreground rounded font-mono text-xs">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </a>
           ))}
         </div>
 
