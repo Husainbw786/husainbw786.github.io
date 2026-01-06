@@ -1,5 +1,9 @@
 import { Github, Linkedin, Mail, Code2, Terminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles } from './ui/sparkles';
+import { BackgroundBeams } from './ui/background-beams';
+import { TextGenerateEffect } from './ui/text-generate-effect';
 
 const roles = [
   'AI Engineer',
@@ -37,114 +41,191 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background Beams Animation */}
+      <BackgroundBeams className="z-0" />
+      
       {/* Background Glow Effects */}
-      <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] animate-pulse-slow" />
-      <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] animate-pulse-slow delay-200" />
+      <motion.div 
+        className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px]"
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.1, 0.15, 0.1],
+        }}
+        transition={{
+          duration: 6,
+          delay: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
       
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
       
       <div className="section-container relative z-10 py-32">
         <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6 animate-fade-up opacity-0" style={{ animationDelay: '0.1s' }}>
+          <motion.div 
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <Terminal size={14} className="text-primary" />
             <span className="font-mono text-sm text-primary">Available for opportunities</span>
-          </div>
+          </motion.div>
           
-          <p className="font-mono text-primary mb-4 animate-fade-up opacity-0" style={{ animationDelay: '0.15s' }}>
+          <motion.p 
+            className="font-mono text-primary mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
             Hi, my name is
-          </p>
+          </motion.p>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-up opacity-0" style={{ animationDelay: '0.2s' }}>
-            Husain Baghwala.
-          </h1>
+          {/* Name with Sparkles Animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Sparkles className="mb-4" sparkleCount={20}>
+              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
+                Husain Baghwala.
+              </h1>
+            </Sparkles>
+          </motion.div>
           
-          <h2 className="text-3xl md:text-5xl font-bold text-muted-foreground mb-2 animate-fade-up opacity-0 flex items-center gap-3" style={{ animationDelay: '0.3s' }}>
+          {/* Animated Subtitle */}
+          <TextGenerateEffect 
+            words="Building the future with AI-powered solutions."
+            className="text-xl md:text-2xl text-muted-foreground mb-4"
+            duration={0.4}
+          />
+          
+          <motion.h2 
+            className="text-3xl md:text-5xl font-bold text-muted-foreground mb-2 flex items-center gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             I'm a{' '}
             <span className="text-gradient inline-flex items-center">
               {displayText}
-              <span className="w-0.5 h-8 md:h-12 bg-primary ml-1 animate-pulse" />
+              <motion.span 
+                className="w-0.5 h-8 md:h-12 bg-primary ml-1"
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+              />
             </span>
-          </h2>
+          </motion.h2>
           
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 leading-relaxed animate-fade-up opacity-0" style={{ animationDelay: '0.4s' }}>
+          <motion.p 
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
             Building <span className="text-primary">AI-powered</span> solutions at{' '}
             <a href="https://walkover.in" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               Walkover Web Solutions
             </a>
             . Specializing in LLM integration, RAG pipelines, and intelligent backend systems.
-          </p>
+          </motion.p>
 
           {/* Stats */}
-          <div className="flex flex-wrap gap-6 mb-10 animate-fade-up opacity-0" style={{ animationDelay: '0.45s' }}>
-            <div className="glass-card px-5 py-3 flex items-center gap-3">
-              <Code2 className="w-5 h-5 text-primary" />
-              <div>
-                <p className="text-2xl font-bold">365+</p>
-                <p className="text-xs text-muted-foreground">Day Streak</p>
-              </div>
-            </div>
-            <div className="glass-card px-5 py-3 flex items-center gap-3">
-              <span className="text-xl font-bold text-yellow-400">#1</span>
-              <div>
-                <p className="text-sm font-semibold">GFG Rank</p>
-                <p className="text-xs text-muted-foreground">University</p>
-              </div>
-            </div>
-            <div className="glass-card px-5 py-3 flex items-center gap-3">
-              <span className="text-xl font-bold text-green-400">19%</span>
-              <div>
-                <p className="text-sm font-semibold">Top Global</p>
-                <p className="text-xs text-muted-foreground">LeetCode</p>
-              </div>
-            </div>
-          </div>
+          <motion.div 
+            className="flex flex-wrap gap-6 mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            {[
+              { icon: <Code2 className="w-5 h-5 text-primary" />, value: "365+", label: "Day Streak", sublabel: "" },
+              { icon: <span className="text-xl font-bold text-yellow-400">#1</span>, value: "", label: "GFG Rank", sublabel: "University" },
+              { icon: <span className="text-xl font-bold text-green-400">19%</span>, value: "", label: "Top Global", sublabel: "LeetCode" },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className="glass-card px-5 py-3 flex items-center gap-3"
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {stat.icon}
+                <div>
+                  {stat.value && <p className="text-2xl font-bold">{stat.value}</p>}
+                  <p className={stat.value ? "text-xs text-muted-foreground" : "text-sm font-semibold"}>{stat.label}</p>
+                  {stat.sublabel && <p className="text-xs text-muted-foreground">{stat.sublabel}</p>}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-          <div className="flex flex-wrap items-center gap-6 animate-fade-up opacity-0" style={{ animationDelay: '0.5s' }}>
-            <a
+          <motion.div 
+            className="flex flex-wrap items-center gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+            <motion.a
               href="#contact"
-              className="px-8 py-4 bg-gradient-primary text-primary-foreground font-semibold rounded-lg glow-effect-sm hover:scale-105 transition-transform duration-300"
+              className="px-8 py-4 bg-gradient-primary text-primary-foreground font-semibold rounded-lg glow-effect-sm"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Get In Touch
-            </a>
+            </motion.a>
             
             <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/Husainbw786"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={22} />
-              </a>
-              <a
-                href="https://linkedin.com/in/husainbw786"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={22} />
-              </a>
-              <a
-                href="mailto:husainbw123@gmail.com"
-                className="p-3 border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                aria-label="Email"
-              >
-                <Mail size={22} />
-              </a>
+              {[
+                { href: "https://github.com/Husainbw786", icon: <Github size={22} />, label: "GitHub" },
+                { href: "https://linkedin.com/in/husainbw786", icon: <Linkedin size={22} />, label: "LinkedIn" },
+                { href: "mailto:husainbw123@gmail.com", icon: <Mail size={22} />, label: "Email" },
+              ].map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                  className="p-3 border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                  aria-label={link.label}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+      <motion.div 
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
         <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
+          <motion.div 
+            className="w-1 h-3 bg-primary rounded-full mt-2"
+            animate={{ opacity: [1, 0.3, 1], y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
