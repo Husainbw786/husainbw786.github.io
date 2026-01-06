@@ -7,14 +7,17 @@ const experiences = [
     period: 'June 2024 - Present',
     location: 'Indore',
     type: 'work',
+    highlight: true,
+    projectLink: 'https://gtwy.ai',
+    projectName: 'GTWY.ai',
     points: [
-      'Led backend development of gtwy.ai, enhancing advanced AI API support for conversation management and SaaS assistance',
-      'Optimized LLM integration and backend API performance using Node.js, Express.js, and FastAPI',
-      'Designed robust APIs for chatbot and playground systems with Pydantic validation supporting multiple AI models',
-      'Managed scalable data storage with MongoDB for LLM configs and PostgreSQL for chat analytics',
+      '🚀 Built the entire backend of GTWY.ai — a managed AI platform now powering 500K+ active agents & 7M+ automated tasks',
+      'Architected unified LLM API supporting OpenAI, Anthropic, Gemini with <50ms latency and 99.99% uptime',
+      'Developed real-time RAG engine with 98% precision for instant document indexing and semantic search',
+      'Designed conversation management system handling memory, context, and multi-turn dialogues at scale',
+      'Built function orchestration layer enabling 2000+ app integrations (Slack, Salesforce, Gmail, etc.)',
+      'Implemented guardrails, rate limiting, and security features for enterprise-grade reliability',
       'Integrated GenAI features using LangChain workflows, HuggingFace models, and Model Context Protocol (MCP)',
-      'Implemented RAG pipelines and built AI agents with tool interaction and reasoning capabilities',
-      'Developed automated database migration scripts and implemented linting tools for optimized performance',
     ],
   },
   {
@@ -71,8 +74,23 @@ const Experience = () => {
                 {/* Content */}
                 <div className={`flex-1 pl-16 md:pl-0 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'}`}>
                   <div className="glass-card p-6 hover:border-primary/50 transition-colors">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="p-3 bg-primary/10 rounded-xl">
+                {exp.highlight && (
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="px-3 py-1 bg-primary/20 text-primary rounded-full font-mono text-xs font-semibold animate-pulse">
+                      ⭐ KEY PROJECT
+                    </span>
+                    <a 
+                      href={exp.projectLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 bg-accent/20 text-accent rounded-full font-mono text-xs hover:bg-accent/30 transition-colors"
+                    >
+                      {exp.projectName} →
+                    </a>
+                  </div>
+                )}
+                <div className="flex items-start gap-4 mb-4">
+                      <div className={`p-3 rounded-xl ${exp.highlight ? 'bg-gradient-to-br from-primary/20 to-accent/20' : 'bg-primary/10'}`}>
                         {exp.type === 'work' ? (
                           <Briefcase className="w-5 h-5 text-primary" />
                         ) : (

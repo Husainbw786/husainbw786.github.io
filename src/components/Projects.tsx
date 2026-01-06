@@ -1,6 +1,36 @@
-import { ExternalLink, Github, Bot, Users, FileText, BarChart3, Code, Layers } from 'lucide-react';
+import { ExternalLink, Github, Bot, Users, FileText, BarChart3, Code, Layers, Cpu, Globe } from 'lucide-react';
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  icon: React.ComponentType<{ className?: string }>;
+  github?: string;
+  link?: string;
+  gradient: string;
+  featured: boolean;
+  flagship?: boolean;
+  stats?: { label: string; value: string }[];
+}
+
+const projects: Project[] = [
+  {
+    title: 'GTWY.ai - Managed AI Platform',
+    description:
+      'Built the entire backend for GTWY — an enterprise-grade managed AI platform powering 500K+ active agents and 7M+ automated tasks. Features unified LLM API supporting OpenAI, Anthropic & Gemini with <50ms latency, real-time RAG engine with 98% precision, conversation management, function orchestration, and 2000+ app integrations.',
+    tech: ['Node.js', 'FastAPI', 'LangChain', 'MongoDB', 'PostgreSQL', 'RAG', 'OpenAI', 'MCP'],
+    icon: Cpu,
+    link: 'https://gtwy.ai',
+    gradient: 'from-primary via-accent to-cyan-400',
+    featured: true,
+    flagship: true,
+    stats: [
+      { label: 'Active Agents', value: '500K+' },
+      { label: 'Tasks Automated', value: '7M+' },
+      { label: 'Uptime', value: '99.99%' },
+      { label: 'Latency', value: '<50ms' },
+    ],
+  },
   {
     title: 'AI Screening Tool',
     description:
@@ -64,7 +94,8 @@ const projects = [
 ];
 
 const Projects = () => {
-  const featuredProjects = projects.filter((p) => p.featured);
+  const flagshipProject = projects.find((p) => p.flagship);
+  const featuredProjects = projects.filter((p) => p.featured && !p.flagship);
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
@@ -76,7 +107,72 @@ const Projects = () => {
           <span className="flex-1 h-px bg-border ml-4" />
         </h2>
 
-        {/* Featured Projects */}
+        {/* Flagship Project - GTWY */}
+        {flagshipProject && (
+          <div className="mb-20">
+            <div className="relative">
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-cyan-400/20 blur-3xl -z-10" />
+              
+              <div className="glass-card border-primary/30 p-8 md:p-12 relative overflow-hidden">
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/20 to-transparent" />
+                
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="px-3 py-1 bg-primary/20 text-primary rounded-full font-mono text-xs font-semibold tracking-wider animate-pulse">
+                    🚀 FLAGSHIP PROJECT
+                  </span>
+                  <span className="px-3 py-1 bg-accent/20 text-accent rounded-full font-mono text-xs">
+                    Built Entire Backend
+                  </span>
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-cyan-400 bg-clip-text text-transparent">
+                      {flagshipProject.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
+                      {flagshipProject.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {flagshipProject.tech.map((tech) => (
+                        <span key={tech} className="px-3 py-1 bg-primary/10 text-primary border border-primary/30 rounded-full font-mono text-sm">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={flagshipProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                    >
+                      <Globe size={18} />
+                      Visit GTWY.ai
+                      <ExternalLink size={16} />
+                    </a>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    {flagshipProject.stats?.map((stat, i) => (
+                      <div key={i} className="glass-card p-6 text-center hover:border-primary/50 transition-colors">
+                        <div className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1">
+                          {stat.value}
+                        </div>
+                        <div className="text-sm text-muted-foreground font-mono">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Other Featured Projects */}
         <div className="space-y-12 mb-16">
           {featuredProjects.map((project, index) => (
             <div
@@ -99,16 +195,18 @@ const Projects = () => {
                   ))}
                 </div>
                 <div className="flex gap-4">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github size={22} />
+                    </a>
+                  )}
                   <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Github size={22} />
-                  </a>
-                  <a
-                    href={project.github}
+                    href={project.github || project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors"
