@@ -88,10 +88,14 @@ const CodingProfiles = () => {
               Top Languages
             </h3>
             <img
-              src="https://github-readme-stats.vercel.app/api/top-langs/?username=husainbw786&theme=transparent&layout=compact&hide_border=true&title_color=0ea5e9&text_color=94a3b8&bg_color=00000000"
+              src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=husainbw786&theme=nightowl&layout=compact&hide_border=true&bg_color=00000000"
               alt="Top Languages"
               className="w-full"
               loading="lazy"
+              onError={(e) => {
+                const target = e.currentTarget;
+                target.src = "https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=husainbw786&theme=nord_dark";
+              }}
             />
           </div>
         </div>
