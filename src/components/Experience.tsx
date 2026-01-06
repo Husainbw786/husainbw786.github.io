@@ -8,12 +8,13 @@ const experiences = [
     location: 'Indore',
     type: 'work',
     points: [
-      'Led backend development of gtwy.ai, enhancing advanced AI API support for conversation management',
+      'Led backend development of gtwy.ai, enhancing advanced AI API support for conversation management and SaaS assistance',
       'Optimized LLM integration and backend API performance using Node.js, Express.js, and FastAPI',
-      'Designed and implemented robust APIs for chatbot and playground systems with Pydantic validation',
+      'Designed robust APIs for chatbot and playground systems with Pydantic validation supporting multiple AI models',
       'Managed scalable data storage with MongoDB for LLM configs and PostgreSQL for chat analytics',
-      'Integrated GenAI features using LangChain workflows, HuggingFace models, and MCP',
+      'Integrated GenAI features using LangChain workflows, HuggingFace models, and Model Context Protocol (MCP)',
       'Implemented RAG pipelines and built AI agents with tool interaction and reasoning capabilities',
+      'Developed automated database migration scripts and implemented linting tools for optimized performance',
     ],
   },
   {
@@ -23,8 +24,8 @@ const experiences = [
     location: 'Indore',
     type: 'work',
     points: [
-      'Mastered sophisticated Git features, contributing to 15% increase in codebase efficiency',
-      'Assisted in developing features, boosting user engagement by 20% using Node.js and Python',
+      'Mastered sophisticated Git features and branching strategies, improving codebase efficiency by 15%',
+      'Developed and debugged new features, boosting user engagement by 20% using Node.js and Python',
       'Refactored project architecture from Node.js to Python/FastAPI, achieving 25% improvement in LLM integration',
     ],
   },
@@ -34,7 +35,11 @@ const experiences = [
     period: '2020 - 2024',
     location: 'Indore',
     type: 'education',
-    points: ['CGPA: 8.8/10', 'Ranked #1 on GeeksForGeeks among 1,807 university students'],
+    points: [
+      'CGPA: 8.8/10',
+      'Ranked #1 on GeeksForGeeks among 1,807 university students',
+      'Active participation in coding competitions and hackathons',
+    ],
   },
 ];
 
@@ -43,7 +48,7 @@ const Experience = () => {
     <section id="experience" className="py-32 bg-secondary/20">
       <div className="section-container">
         <h2 className="flex items-center gap-4 text-2xl md:text-3xl font-bold mb-16">
-          <span className="font-mono text-primary">02.</span>
+          <span className="font-mono text-primary">03.</span>
           Experience
           <span className="flex-1 h-px bg-border ml-4" />
         </h2>

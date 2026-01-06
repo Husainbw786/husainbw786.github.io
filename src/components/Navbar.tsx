@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'About', href: '#about' },
+  { label: 'Coding', href: '#coding' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Achievements', href: '#achievements' },
@@ -33,7 +34,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-6">
           {navItems.map((item, index) => (
             <li key={item.href}>
               <a href={item.href} className="nav-link font-mono text-sm">
@@ -57,6 +58,7 @@ const Navbar = () => {
         <button
           className="md:hidden text-foreground"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
