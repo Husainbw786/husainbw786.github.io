@@ -1,7 +1,6 @@
 import { Github, Linkedin, Mail, Code2, Terminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles } from './ui/sparkles';
 import { BackgroundBeams } from './ui/background-beams';
 import { TextGenerateEffect } from './ui/text-generate-effect';
 
@@ -95,18 +94,15 @@ const Hero = () => {
             Hi, my name is
           </motion.p>
           
-          {/* Name with Sparkles Animation */}
-          <motion.div
+          {/* Name */}
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold text-foreground mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Sparkles className="mb-4" sparkleCount={20}>
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
-                Husain Baghwala.
-              </h1>
-            </Sparkles>
-          </motion.div>
+            Husain Baghwala.
+          </motion.h1>
           
           {/* Animated Subtitle */}
           <TextGenerateEffect 
