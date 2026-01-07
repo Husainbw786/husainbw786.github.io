@@ -1,5 +1,4 @@
 import { ExternalLink, Github, Bot, Users, FileText, BarChart3, Code, Layers, Cpu, Globe } from 'lucide-react';
-import gtwyPreview from '@/assets/gtwy-preview.png';
 
 interface Project {
   title: string;
@@ -157,35 +156,15 @@ const Projects = () => {
                     </a>
                   </div>
 
-                  <div className="space-y-4">
-                    {/* GTWY.ai Preview */}
-                    <div className="relative rounded-xl overflow-hidden border border-primary/30 bg-card">
-                      <div className="absolute top-0 left-0 right-0 h-8 bg-card/90 backdrop-blur-sm flex items-center gap-2 px-3 z-10 border-b border-border">
-                        <div className="flex gap-1.5">
-                          <div className="w-3 h-3 rounded-full bg-red-500/70" />
-                          <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                          <div className="w-3 h-3 rounded-full bg-green-500/70" />
+                  <div className="grid grid-cols-2 gap-4">
+                    {flagshipProject.stats?.map((stat, i) => (
+                      <div key={i} className="glass-card p-6 text-center hover:border-primary/50 transition-colors">
+                        <div className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1">
+                          {stat.value}
                         </div>
-                        <span className="text-xs text-muted-foreground font-mono ml-2">gtwy.ai</span>
+                        <div className="text-sm text-muted-foreground font-mono">{stat.label}</div>
                       </div>
-                      <img
-                        src={gtwyPreview}
-                        alt="GTWY.ai Dashboard Preview"
-                        className="w-full pt-8 object-cover"
-                      />
-                    </div>
-                    
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-2 gap-3">
-                      {flagshipProject.stats?.map((stat, i) => (
-                        <div key={i} className="glass-card p-4 text-center hover:border-primary/50 transition-colors">
-                          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1">
-                            {stat.value}
-                          </div>
-                          <div className="text-xs text-muted-foreground font-mono">{stat.label}</div>
-                        </div>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
