@@ -46,7 +46,7 @@ const Navbar = () => {
           ))}
           <li>
             <a
-              href="/Resume.pdf"
+              href="https://app.rezi.ai/s/husainbw"
               target="_blank"
               className="px-4 py-2 border border-primary text-primary rounded-lg font-mono text-sm hover:bg-primary/10 transition-colors"
             >
@@ -83,7 +83,7 @@ const Navbar = () => {
             ))}
             <li>
               <a
-                href="/Resume.pdf"
+                href="https://app.rezi.ai/s/husainbw"
                 target="_blank"
                 className="px-6 py-3 border border-primary text-primary rounded-lg font-mono hover:bg-primary/10 transition-colors"
               >

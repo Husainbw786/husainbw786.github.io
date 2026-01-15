@@ -42,12 +42,12 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'Company Data Scraper',
+    title: 'ViaSocket - Automation Platform',
     description:
-      'Automated web scraping solution for extracting company and employee data efficiently. Built with Python for reliable data extraction and processing capabilities.',
-    tech: ['Python', 'Web Scraping', 'Data Processing', 'API'],
-    icon: Users,
-    github: 'https://github.com/Husainbw786/company-scrapper-backend',
+      'Built the backend for ViaSocket, a powerful automation platform that connects apps and automates workflows seamlessly. Engineered robust API integrations, workflow orchestration, and real-time data synchronization for enterprise automation needs.',
+    tech: ['Node.js', 'Backend', 'API Integration', 'Workflow Automation', 'Microservices'],
+    icon: Globe,
+    link: 'https://viasocket.com/',
     gradient: 'from-accent to-primary',
     featured: true,
   },
@@ -113,11 +113,11 @@ const Projects = () => {
             <div className="relative">
               {/* Glowing background effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-cyan-400/20 blur-3xl -z-10" />
-              
+
               <div className="glass-card border-primary/30 p-8 md:p-12 relative overflow-hidden">
                 {/* Corner accent */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/20 to-transparent" />
-                
+
                 <div className="flex items-center gap-3 mb-6">
                   <span className="px-3 py-1 bg-primary/20 text-primary rounded-full font-mono text-xs font-semibold tracking-wider animate-pulse">
                     🚀 FLAGSHIP PROJECT
@@ -135,7 +135,7 @@ const Projects = () => {
                     <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
                       {flagshipProject.description}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-6">
                       {flagshipProject.tech.map((tech) => (
                         <span key={tech} className="px-3 py-1 bg-primary/10 text-primary border border-primary/30 rounded-full font-mono text-sm">
@@ -177,9 +177,8 @@ const Projects = () => {
           {featuredProjects.map((project, index) => (
             <div
               key={index}
-              className={`grid md:grid-cols-2 gap-8 items-center ${
-                index % 2 === 1 ? 'md:flex-row-reverse' : ''
-              }`}
+              className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                }`}
             >
               <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
                 <p className="font-mono text-primary text-sm mb-2">Featured Project</p>
@@ -216,11 +215,30 @@ const Projects = () => {
                 </div>
               </div>
               <div className={`relative ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                <div className={`aspect-video rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}>
-                  <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
-                    <project.icon className="w-16 h-16 text-primary/50" />
+                {project.title.includes('ViaSocket') ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block cursor-pointer"
+                  >
+                    <div className={`aspect-video rounded-xl bg-gradient-to-br ${project.gradient} p-0.5 hover:scale-105 transition-transform duration-300`}>
+                      <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
+                        <img
+                          src="/viasocket-logo.png"
+                          alt="ViaSocket Logo"
+                          className="w-48 h-auto object-contain"
+                        />
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div className={`aspect-video rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}>
+                    <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
+                      <project.icon className="w-16 h-16 text-primary/50" />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           ))}
