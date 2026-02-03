@@ -1,16 +1,21 @@
-import { ExternalLink, Github, Bot, Users, FileText, BarChart3, Code, Layers, Cpu, Globe } from 'lucide-react';
-import portfolioData from '@/data/portfolio.json';
+import { ExternalLink, Github, Globe } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const Projects = () => {
-  const { projects } = portfolioData;
-  const flagshipProject = projects.find((p) => p.flagship);
-  const featuredProjects = projects.filter((p) => p.featured && !p.flagship);
-  const otherProjects = projects.filter((p) => !p.featured);
+  const { data } = usePortfolio();
+
+  if (!data) return null;
+
+  const { projects } = data;
+
+  const flagshipProject = projects.find(p => p.flagship);
+  const featuredProjects = projects.filter(p => p.featured && !p.flagship);
+  const otherProjects = projects.filter(p => !p.featured && !p.flagship);
 
   const getIcon = (iconName: string, className?: string) => {
     const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon className={className} /> : null;
+    return Icon ? <Icon className={className} /> : <LucideIcons.HelpCircle className={className} />;
   };
 
   return (

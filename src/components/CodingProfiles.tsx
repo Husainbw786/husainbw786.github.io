@@ -1,8 +1,12 @@
 import { ExternalLink } from 'lucide-react';
-import portfolioData from '@/data/portfolio.json';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const CodingProfiles = () => {
-  const { coding_profiles } = portfolioData;
+  const { data } = usePortfolio();
+
+  if (!data) return null;
+
+  const { coding_profiles } = data;
 
   return (
     <section id="coding" className="py-20">

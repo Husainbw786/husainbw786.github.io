@@ -1,8 +1,12 @@
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import portfolioData from '@/data/portfolio.json';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const Contact = () => {
-  const { contact, personal } = portfolioData;
+  const { data } = usePortfolio();
+
+  if (!data) return null;
+
+  const { contact, personal } = data;
 
   return (
     <section id="contact" className="py-32">

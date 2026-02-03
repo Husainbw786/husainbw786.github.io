@@ -1,9 +1,14 @@
+
 import { Heart } from 'lucide-react';
-import portfolioData from '@/data/portfolio.json';
 import * as LucideIcons from 'lucide-react';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const Footer = () => {
-  const { personal } = portfolioData;
+  const { data } = usePortfolio();
+
+  if (!data) return null;
+
+  const { personal } = data;
 
   const getIcon = (iconName: string) => {
     const Icon = (LucideIcons as any)[iconName];

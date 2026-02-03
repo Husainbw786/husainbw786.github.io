@@ -1,13 +1,17 @@
 import { Trophy, Medal, Flame, Award, Target, BookOpen } from 'lucide-react';
-import portfolioData from '@/data/portfolio.json';
 import * as LucideIcons from 'lucide-react';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const Achievements = () => {
-  const { achievements } = portfolioData;
+  const { data } = usePortfolio();
 
-  const getIcon = (iconName: string, className: string) => {
+  if (!data) return null;
+
+  const { achievements } = data;
+
+  const getIcon = (iconName: string, className?: string) => {
     const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon className={className} /> : null;
+    return Icon ? <Icon className={className} /> : <LucideIcons.HelpCircle className={className} />;
   };
 
   return (

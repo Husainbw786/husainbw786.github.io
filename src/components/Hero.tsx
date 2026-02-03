@@ -1,19 +1,25 @@
+
 import { Github, Linkedin, Mail, Code2, Terminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { BackgroundBeams } from './ui/background-beams';
 import { TextGenerateEffect } from './ui/text-generate-effect';
-import portfolioData from '@/data/portfolio.json';
 import * as LucideIcons from 'lucide-react';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const Hero = () => {
-  const [currentRole, setCurrentRole] = useState(0);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const { personal, stats } = portfolioData;
+  const { data } = usePortfolio();
+
+  if (!data) return null;
+
+  const { personal, stats } = data;
+  const { name, roles, company, company_url, about_short, socials } = personal;
 
   useEffect(() => {
-    const role = personal.roles[currentRole];
+    const role = roles[roleIndex];
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         if (displayText.length < role.length) {
@@ -26,13 +32,13 @@ const Hero = () => {
           setDisplayText(displayText.slice(0, -1));
         } else {
           setIsDeleting(false);
-          setCurrentRole((prev) => (prev + 1) % personal.roles.length);
+          setRoleIndex((prev) => (prev + 1) % personal.roles.length);
         }
       }
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentRole, personal.roles]);
+  }, [displayText, isDeleting, roleIndex, personal.roles]);
 
   const getIcon = (iconName: string) => {
     const Icon = (LucideIcons as any)[iconName];

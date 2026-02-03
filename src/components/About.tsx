@@ -1,13 +1,19 @@
-import { Code2, Brain, Database, Zap, Server, GitBranch } from 'lucide-react';
-import portfolioData from '@/data/portfolio.json';
 import * as LucideIcons from 'lucide-react';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const About = () => {
-  const { about } = portfolioData;
+  const { data } = usePortfolio();
 
+  if (!data) return null;
+
+  const { about } = data;
+  const { bio_paragraphs, highlights, skills } = about;
+
+  // Helper function to get icon component by name string
+  // Helper function to get icon component by name string
   const getIcon = (iconName: string) => {
     const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon className="w-6 h-6 text-primary mb-2" /> : null;
+    return Icon ? <Icon size={24} className="mb-2 text-primary" /> : <LucideIcons.HelpCircle size={24} className="mb-2 text-primary" />;
   };
 
   return (
