@@ -1,102 +1,17 @@
 import { ExternalLink, Github, Bot, Users, FileText, BarChart3, Code, Layers, Cpu, Globe } from 'lucide-react';
-
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  icon: React.ComponentType<{ className?: string }>;
-  github?: string;
-  link?: string;
-  gradient: string;
-  featured: boolean;
-  flagship?: boolean;
-  stats?: { label: string; value: string }[];
-}
-
-const projects: Project[] = [
-  {
-    title: 'GTWY.ai - Managed AI Platform',
-    description:
-      'Built the entire backend for GTWY — an enterprise-grade managed AI platform powering 500K+ active agents and 7M+ automated tasks. Features unified LLM API supporting OpenAI, Anthropic & Gemini with <50ms latency, real-time RAG engine with 98% precision, conversation management, function orchestration, and 2000+ app integrations.',
-    tech: ['Node.js', 'FastAPI', 'LangChain', 'MongoDB', 'PostgreSQL', 'RAG', 'OpenAI', 'MCP'],
-    icon: Cpu,
-    link: 'https://gtwy.ai',
-    gradient: 'from-primary via-accent to-cyan-400',
-    featured: true,
-    flagship: true,
-    stats: [
-      { label: 'Active Agents', value: '500K+' },
-      { label: 'Tasks Automated', value: '7M+' },
-      { label: 'Uptime', value: '99.99%' },
-      { label: 'Latency', value: '<50ms' },
-    ],
-  },
-  {
-    title: 'AI Screening Tool',
-    description:
-      'A flexible interview tool backend leveraging OpenAI GPT-4o API for generating personalized questions. Features real-time communication analysis and a high-performance API framework for secure interview management and audio processing.',
-    tech: ['Python', 'FastAPI', 'OpenAI', 'GPT-4o', 'WebSocket'],
-    icon: Bot,
-    github: 'https://github.com/Husainbw786/Screening-Tool',
-    gradient: 'from-primary to-accent',
-    featured: true,
-  },
-  {
-    title: 'ViaSocket - Automation Platform',
-    description:
-      'Built the backend for ViaSocket, a powerful automation platform that connects apps and automates workflows seamlessly. Engineered robust API integrations, workflow orchestration, and real-time data synchronization for enterprise automation needs.',
-    tech: ['Node.js', 'Backend', 'API Integration', 'Workflow Automation', 'Microservices'],
-    icon: Globe,
-    link: 'https://viasocket.com/',
-    gradient: 'from-accent to-primary',
-    featured: true,
-  },
-  {
-    title: 'Resume Crafter',
-    description:
-      'An intelligent resume building tool with AI-powered suggestions for crafting professional resumes tailored to specific job requirements.',
-    tech: ['JavaScript', 'Node.js', 'AI Integration', 'REST API'],
-    icon: FileText,
-    github: 'https://github.com/Husainbw786/Resume-Crafter',
-    gradient: 'from-primary to-cyan-400',
-    featured: false,
-  },
-  {
-    title: 'Analytics Dashboard',
-    description:
-      'Full-stack dashboard application for visualizing and analyzing business metrics with real-time data updates and interactive charts.',
-    tech: ['TypeScript', 'React', 'Node.js', 'MongoDB'],
-    icon: BarChart3,
-    github: 'https://github.com/Husainbw786/Dashboard',
-    gradient: 'from-cyan-400 to-accent',
-    featured: false,
-  },
-  {
-    title: 'LeetCode Solutions',
-    description:
-      'Repository of optimized solutions to LeetCode problems, demonstrating proficiency in data structures, algorithms, and competitive programming.',
-    tech: ['C++', 'Algorithms', 'Data Structures'],
-    icon: Code,
-    github: 'https://github.com/Husainbw786/LeetCode',
-    gradient: 'from-yellow-400 to-orange-500',
-    featured: false,
-  },
-  {
-    title: 'Employee Management System',
-    description:
-      'A comprehensive system for managing employee data, including CRUD operations, search functionality, and data analytics.',
-    tech: ['TypeScript', 'React', 'Node.js', 'PostgreSQL'],
-    icon: Layers,
-    github: 'https://github.com/Husainbw786/Employee-Management-System',
-    gradient: 'from-green-400 to-primary',
-    featured: false,
-  },
-];
+import portfolioData from '@/data/portfolio.json';
+import * as LucideIcons from 'lucide-react';
 
 const Projects = () => {
+  const { projects } = portfolioData;
   const flagshipProject = projects.find((p) => p.flagship);
   const featuredProjects = projects.filter((p) => p.featured && !p.flagship);
   const otherProjects = projects.filter((p) => !p.featured);
+
+  const getIcon = (iconName: string, className?: string) => {
+    const Icon = (LucideIcons as any)[iconName];
+    return Icon ? <Icon className={className} /> : null;
+  };
 
   return (
     <section id="projects" className="py-32">
@@ -235,7 +150,7 @@ const Projects = () => {
                 ) : (
                   <div className={`aspect-video rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}>
                     <div className="w-full h-full bg-card rounded-xl flex items-center justify-center">
-                      <project.icon className="w-16 h-16 text-primary/50" />
+                      {getIcon(project.icon, "w-16 h-16 text-primary/50")}
                     </div>
                   </div>
                 )}
@@ -257,7 +172,7 @@ const Projects = () => {
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${project.gradient}`}>
-                  <project.icon className="w-5 h-5 text-primary-foreground" />
+                  {getIcon(project.icon, "w-5 h-5 text-primary-foreground")}
                 </div>
                 <ExternalLink size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
               </div>

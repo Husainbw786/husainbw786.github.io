@@ -8,27 +8,49 @@ import Projects from '@/components/Projects';
 import Achievements from '@/components/Achievements';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { usePortfolio } from '@/context/PortfolioContext';
+import { Loader2 } from 'lucide-react';
 
 const Index = () => {
+  const { data, isLoading, error } = usePortfolio();
+
+  if (isLoading) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-background">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-background text-red-500">
+        Failed to load portfolio data. Please try again later.
+      </div>
+    );
+  }
+
+  const { meta } = data;
+
   return (
     <>
       <Helmet>
-        <title>Husain Baghwala | AI Engineer & Full Stack Developer</title>
+        <title>{meta.title}</title>
         <meta
           name="description"
-          content="AI Engineer at Walkover Web Solutions specializing in LLM integration, LangChain, RAG pipelines, and full-stack development with Node.js and Python. Top 19% LeetCode, #1 GFG University Rank."
+          content={meta.description}
         />
         <meta
           name="keywords"
-          content="Husain Baghwala, AI Engineer, Full Stack Developer, LangChain, Python, Node.js, LLM, RAG, Machine Learning, LeetCode, GeeksForGeeks"
+          content={meta.keywords}
         />
-        <meta property="og:title" content="Husain Baghwala | AI Engineer" />
+        <meta property="og:title" content={meta.og_title} />
         <meta
           property="og:description"
-          content="AI Engineer specializing in LLM integration and full-stack development. Top 19% LeetCode."
+          content={meta.og_description}
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://husainbaghwala.dev" />
+        <link rel="canonical" href={meta.canonical_url} />
       </Helmet>
 
       <div className="min-h-screen bg-background">

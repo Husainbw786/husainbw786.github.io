@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import portfolioData from '@/data/portfolio.json';
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -24,9 +25,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-background/80 backdrop-blur-xl border-b border-border/50' : ''
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-background/80 backdrop-blur-xl border-b border-border/50' : ''
+        }`}
     >
       <div className="section-container py-4 flex items-center justify-between">
         <a href="#" className="text-xl font-bold font-mono flex items-center gap-2">
@@ -46,7 +46,7 @@ const Navbar = () => {
           ))}
           <li>
             <a
-              href="https://app.rezi.ai/s/husainbw"
+              href={portfolioData.personal.resume_url}
               target="_blank"
               className="px-4 py-2 border border-primary text-primary rounded-lg font-mono text-sm hover:bg-primary/10 transition-colors"
             >
@@ -83,7 +83,7 @@ const Navbar = () => {
             ))}
             <li>
               <a
-                href="https://app.rezi.ai/s/husainbw"
+                href={portfolioData.personal.resume_url}
                 target="_blank"
                 className="px-6 py-3 border border-primary text-primary rounded-lg font-mono hover:bg-primary/10 transition-colors"
               >

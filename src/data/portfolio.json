@@ -1,0 +1,405 @@
+{
+    "personal": {
+        "name": "Husain Baghwala",
+        "roles": [
+            "AI Engineer",
+            "Backend Developer",
+            "Problem Solver",
+            "LLM Specialist"
+        ],
+        "tagline": "Building the future with AI-powered solutions.",
+        "about_short": "Building <span class=\"text-primary\">AI-powered</span> solutions at <a href=\"https://walkover.in\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-primary hover:underline\">Walkover Web Solutions</a>. Specializing in LLM integration, RAG pipelines, and intelligent backend systems.",
+        "company": "Walkover Web Solutions",
+        "company_url": "https://walkover.in",
+        "resume_url": "https://app.rezi.ai/s/husainbw",
+        "email": "husainbw123@gmail.com",
+        "socials": [
+            {
+                "label": "GitHub",
+                "href": "https://github.com/Husainbw786",
+                "icon": "Github"
+            },
+            {
+                "label": "LinkedIn",
+                "href": "https://linkedin.com/in/husainbw786",
+                "icon": "Linkedin"
+            },
+            {
+                "label": "Email",
+                "href": "mailto:husainbw123@gmail.com",
+                "icon": "Mail"
+            }
+        ]
+    },
+    "stats": [
+        {
+            "label": "Day Streak",
+            "value": "365+",
+            "sublabel": "",
+            "icon": "Code2",
+            "color": "text-primary"
+        },
+        {
+            "label": "GFG Rank",
+            "value": "#1",
+            "sublabel": "University",
+            "icon": "",
+            "color": "text-yellow-400"
+        },
+        {
+            "label": "Top Global",
+            "value": "19%",
+            "sublabel": "LeetCode",
+            "icon": "",
+            "color": "text-green-400"
+        }
+    ],
+    "about": {
+        "bio_paragraphs": [
+            "I'm a motivated Software Engineer with a passion for building intelligent systems and scalable backend solutions. Currently working as an <span class=\"text-foreground font-medium\">AI Engineer</span> at Walkover Web Solutions, where I lead backend development for AI-powered products.",
+            "My expertise lies in integrating Large Language Models, building RAG pipelines, and developing robust APIs. I've worked extensively with <span class=\"text-primary\">LangChain</span>, <span class=\"text-primary\"> HuggingFace</span>, and the <span class=\"text-primary\">Model Context Protocol (MCP)</span> to create intelligent chatbot systems and AI agents that solve real business problems.",
+            "Beyond AI, I'm deeply passionate about Data Structures & Algorithms. I've maintained a <span class=\"text-primary\"> 365+ day streak</span> on coding platforms and achieved <span class=\"text-primary\"> #1 rank among 1,807 students</span> at my university on GeeksForGeeks. I'm also in the <span class=\"text-primary\">top 19% globally</span> on LeetCode."
+        ],
+        "highlights": [
+            {
+                "label": "AI Engineering",
+                "desc": "LLM Integration & RAG Pipelines",
+                "icon": "Brain"
+            },
+            {
+                "label": "Backend Development",
+                "desc": "Node.js, Python & FastAPI",
+                "icon": "Server"
+            },
+            {
+                "label": "Data Systems",
+                "desc": "MongoDB & PostgreSQL",
+                "icon": "Database"
+            },
+            {
+                "label": "Problem Solving",
+                "desc": "Top 19% LeetCode, #1 GFG",
+                "icon": "Zap"
+            },
+            {
+                "label": "Clean Code",
+                "desc": "DSA & Best Practices",
+                "icon": "Code2"
+            },
+            {
+                "label": "Version Control",
+                "desc": "Git & GitHub Expert",
+                "icon": "GitBranch"
+            }
+        ],
+        "skills": {
+            "languages": [
+                "Python",
+                "JavaScript",
+                "TypeScript",
+                "Node.js",
+                "C++",
+                "SQL"
+            ],
+            "frameworks": [
+                "FastAPI",
+                "Express.js",
+                "Flask",
+                "LangChain",
+                "OpenCV",
+                "Pandas",
+                "NumPy"
+            ],
+            "tools": [
+                "Git",
+                "GitHub",
+                "Docker",
+                "Postman",
+                "Jupyter",
+                "VS Code",
+                "Cursor",
+                "PyCharm"
+            ],
+            "ai": [
+                "LangChain",
+                "HuggingFace",
+                "OpenAI",
+                "RAG",
+                "MCP",
+                "Prompt Engineering",
+                "AI Agents"
+            ],
+            "databases": [
+                "MongoDB",
+                "PostgreSQL",
+                "Redis",
+                "Vector DBs"
+            ]
+        }
+    },
+    "experience": [
+        {
+            "title": "AI Engineer",
+            "company": "Walkover Web Solutions",
+            "period": "June 2024 - Present",
+            "location": "Indore",
+            "type": "work",
+            "highlight": true,
+            "projectLink": "https://gtwy.ai",
+            "projectName": "GTWY.ai",
+            "points": [
+                "🚀 Built the entire backend of GTWY.ai — a managed AI platform now powering 500K+ active agents & 7M+ automated tasks",
+                "Architected unified LLM API supporting OpenAI, Anthropic, Gemini with <50ms latency and 99.99% uptime",
+                "Developed real-time RAG engine with 98% precision for instant document indexing and semantic search",
+                "Designed conversation management system handling memory, context, and multi-turn dialogues at scale",
+                "Built function orchestration layer enabling 2000+ app integrations (Slack, Salesforce, Gmail, etc.)",
+                "Implemented guardrails, rate limiting, and security features for enterprise-grade reliability",
+                "Integrated GenAI features using LangChain workflows, HuggingFace models, and Model Context Protocol (MCP)"
+            ]
+        },
+        {
+            "title": "Software Engineer Intern",
+            "company": "Walkover Web Solutions",
+            "period": "January 2024 - May 2024",
+            "location": "Indore",
+            "type": "work",
+            "points": [
+                "Mastered sophisticated Git features and branching strategies, improving codebase efficiency by 15%",
+                "Developed and debugged new features, boosting user engagement by 20% using Node.js and Python",
+                "Refactored project architecture from Node.js to Python/FastAPI, achieving 25% improvement in LLM integration"
+            ]
+        },
+        {
+            "title": "B.Tech Computer Science",
+            "company": "Medi-Caps University",
+            "period": "2020 - 2024",
+            "location": "Indore",
+            "type": "education",
+            "points": [
+                "CGPA: 8.8/10",
+                "Ranked #1 on GeeksForGeeks among 1,807 university students",
+                "Active participation in coding competitions and hackathons"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "title": "GTWY.ai - Managed AI Platform",
+            "description": "Built the entire backend for GTWY — an enterprise-grade managed AI platform powering 500K+ active agents and 7M+ automated tasks. Features unified LLM API supporting OpenAI, Anthropic & Gemini with <50ms latency, real-time RAG engine with 98% precision, conversation management, function orchestration, and 2000+ app integrations.",
+            "tech": [
+                "Node.js",
+                "FastAPI",
+                "LangChain",
+                "MongoDB",
+                "PostgreSQL",
+                "RAG",
+                "OpenAI",
+                "MCP"
+            ],
+            "icon": "Cpu",
+            "link": "https://gtwy.ai",
+            "gradient": "from-primary via-accent to-cyan-400",
+            "featured": true,
+            "flagship": true,
+            "stats": [
+                {
+                    "label": "Active Agents",
+                    "value": "500K+"
+                },
+                {
+                    "label": "Tasks Automated",
+                    "value": "7M+"
+                },
+                {
+                    "label": "Uptime",
+                    "value": "99.99%"
+                },
+                {
+                    "label": "Latency",
+                    "value": "<50ms"
+                }
+            ]
+        },
+        {
+            "title": "AI Screening Tool",
+            "description": "A flexible interview tool backend leveraging OpenAI GPT-4o API for generating personalized questions. Features real-time communication analysis and a high-performance API framework for secure interview management and audio processing.",
+            "tech": [
+                "Python",
+                "FastAPI",
+                "OpenAI",
+                "GPT-4o",
+                "WebSocket"
+            ],
+            "icon": "Bot",
+            "github": "https://github.com/Husainbw786/Screening-Tool",
+            "gradient": "from-primary to-accent",
+            "featured": true
+        },
+        {
+            "title": "ViaSocket - Automation Platform",
+            "description": "Built the backend for ViaSocket, a powerful automation platform that connects apps and automates workflows seamlessly. Engineered robust API integrations, workflow orchestration, and real-time data synchronization for enterprise automation needs.",
+            "tech": [
+                "Node.js",
+                "Backend",
+                "API Integration",
+                "Workflow Automation",
+                "Microservices"
+            ],
+            "icon": "Globe",
+            "link": "https://viasocket.com/",
+            "gradient": "from-accent to-primary",
+            "featured": true
+        },
+        {
+            "title": "Resume Crafter",
+            "description": "An intelligent resume building tool with AI-powered suggestions for crafting professional resumes tailored to specific job requirements.",
+            "tech": [
+                "JavaScript",
+                "Node.js",
+                "AI Integration",
+                "REST API"
+            ],
+            "icon": "FileText",
+            "github": "https://github.com/Husainbw786/Resume-Crafter",
+            "gradient": "from-primary to-cyan-400",
+            "featured": false
+        },
+        {
+            "title": "Analytics Dashboard",
+            "description": "Full-stack dashboard application for visualizing and analyzing business metrics with real-time data updates and interactive charts.",
+            "tech": [
+                "TypeScript",
+                "React",
+                "Node.js",
+                "MongoDB"
+            ],
+            "icon": "BarChart3",
+            "github": "https://github.com/Husainbw786/Dashboard",
+            "gradient": "from-cyan-400 to-accent",
+            "featured": false
+        },
+        {
+            "title": "LeetCode Solutions",
+            "description": "Repository of optimized solutions to LeetCode problems, demonstrating proficiency in data structures, algorithms, and competitive programming.",
+            "tech": [
+                "C++",
+                "Algorithms",
+                "Data Structures"
+            ],
+            "icon": "Code",
+            "github": "https://github.com/Husainbw786/LeetCode",
+            "gradient": "from-yellow-400 to-orange-500",
+            "featured": false
+        },
+        {
+            "title": "Employee Management System",
+            "description": "A comprehensive system for managing employee data, including CRUD operations, search functionality, and data analytics.",
+            "tech": [
+                "TypeScript",
+                "React",
+                "Node.js",
+                "PostgreSQL"
+            ],
+            "icon": "Layers",
+            "github": "https://github.com/Husainbw786/Employee-Management-System",
+            "gradient": "from-green-400 to-primary",
+            "featured": false
+        }
+    ],
+    "meta": {
+        "title": "Husain Baghwala | AI Engineer & Full Stack Developer",
+        "description": "AI Engineer at Walkover Web Solutions specializing in LLM integration, LangChain, RAG pipelines, and full-stack development with Node.js and Python. Top 19% LeetCode, #1 GFG University Rank.",
+        "keywords": "Husain Baghwala, AI Engineer, Full Stack Developer, LangChain, Python, Node.js, LLM, RAG, Machine Learning, LeetCode, GeeksForGeeks",
+        "og_title": "Husain Baghwala | AI Engineer",
+        "og_description": "AI Engineer specializing in LLM integration and full-stack development. Top 19% LeetCode.",
+        "canonical_url": "https://husainbaghwala.dev"
+    },
+    "contact": {
+        "intro": "I'm currently looking for new opportunities and my inbox is always open. Whether you have a question, want to discuss AI/ML projects, or just want to say hi — I'll do my best to get back to you!",
+        "phone": "+91 9131318108",
+        "location": "Indore, India"
+    },
+    "achievements": [
+        {
+            "icon": "Trophy",
+            "title": "#1 University Rank",
+            "description": "Ranked 1st among 1,807 students on GeeksForGeeks platform at Medi-Caps University",
+            "color": "text-yellow-400",
+            "bgColor": "bg-yellow-400/10",
+            "borderColor": "border-yellow-400/30"
+        },
+        {
+            "icon": "Medal",
+            "title": "Top 19% on LeetCode",
+            "description": "Demonstrated advanced proficiency in problem-solving and coding challenges globally",
+            "color": "text-primary",
+            "bgColor": "bg-primary/10",
+            "borderColor": "border-primary/30"
+        },
+        {
+            "icon": "Flame",
+            "title": "365+ Day Streak",
+            "description": "Maintained consistent daily practice solving DSA questions on GeeksForGeeks and LeetCode",
+            "color": "text-orange-400",
+            "bgColor": "bg-orange-400/10",
+            "borderColor": "border-orange-400/30"
+        },
+        {
+            "icon": "Award",
+            "title": "Postman API Expert",
+            "description": "Certified as Postman API Fundamentals Student Expert for API development skills",
+            "color": "text-accent",
+            "bgColor": "bg-accent/10",
+            "borderColor": "border-accent/30"
+        },
+        {
+            "icon": "Target",
+            "title": "8.8 CGPA",
+            "description": "Achieved excellent academic performance in B.Tech Computer Science at Medi-Caps University",
+            "color": "text-green-400",
+            "bgColor": "bg-green-400/10",
+            "borderColor": "border-green-400/30"
+        },
+        {
+            "icon": "BookOpen",
+            "title": "DSA Mastery",
+            "description": "Solved significant number of Data Structures and Algorithms problems across platforms",
+            "color": "text-cyan-400",
+            "bgColor": "bg-cyan-400/10",
+            "borderColor": "border-cyan-400/30"
+        }
+    ],
+    "coding_profiles": {
+        "platforms": [
+            {
+                "name": "LeetCode",
+                "username": "husain_bw",
+                "url": "https://leetcode.com/husain_bw/",
+                "stat": "Top 19%",
+                "statLabel": "Global Ranking",
+                "color": "bg-[#FFA116]",
+                "textColor": "text-[#FFA116]"
+            },
+            {
+                "name": "GeeksforGeeks",
+                "username": "husain_bw",
+                "url": "https://auth.geeksforgeeks.org/user/husain_bw",
+                "stat": "#1",
+                "statLabel": "University Rank",
+                "color": "bg-[#2F8D46]",
+                "textColor": "text-[#2F8D46]"
+            },
+            {
+                "name": "HackerRank",
+                "username": "husainhackerrank",
+                "url": "https://www.hackerrank.com/husainhackerrank",
+                "stat": "5★",
+                "statLabel": "Problem Solving",
+                "color": "bg-[#2EC866]",
+                "textColor": "text-[#2EC866]"
+            }
+        ],
+        "github_streak_url": "https://streak-stats.demolab.com/?user=husainbw786&theme=nightowl&hide_border=true&background=00000000&currStreakNum=2FD3EB&fire=pink&sideLabels=F00",
+        "top_languages_url": "https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=husainbw786&theme=nightowl&layout=compact&hide_border=true&bg_color=00000000"
+    }
+}

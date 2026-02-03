@@ -1,36 +1,9 @@
 import { ExternalLink } from 'lucide-react';
-
-const platforms = [
-  {
-    name: 'LeetCode',
-    username: 'husain_bw',
-    url: 'https://leetcode.com/husain_bw/',
-    stat: 'Top 19%',
-    statLabel: 'Global Ranking',
-    color: 'bg-[#FFA116]',
-    textColor: 'text-[#FFA116]',
-  },
-  {
-    name: 'GeeksforGeeks',
-    username: 'husain_bw',
-    url: 'https://auth.geeksforgeeks.org/user/husain_bw',
-    stat: '#1',
-    statLabel: 'University Rank',
-    color: 'bg-[#2F8D46]',
-    textColor: 'text-[#2F8D46]',
-  },
-  {
-    name: 'HackerRank',
-    username: 'husainhackerrank',
-    url: 'https://www.hackerrank.com/husainhackerrank',
-    stat: '5★',
-    statLabel: 'Problem Solving',
-    color: 'bg-[#2EC866]',
-    textColor: 'text-[#2EC866]',
-  },
-];
+import portfolioData from '@/data/portfolio.json';
 
 const CodingProfiles = () => {
+  const { coding_profiles } = portfolioData;
+
   return (
     <section id="coding" className="py-20">
       <div className="section-container">
@@ -41,7 +14,7 @@ const CodingProfiles = () => {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {platforms.map((platform) => (
+          {coding_profiles.platforms.map((platform) => (
             <a
               key={platform.name}
               href={platform.url}
@@ -53,12 +26,12 @@ const CodingProfiles = () => {
                 <div className={`w-3 h-3 rounded-full ${platform.color}`} />
                 <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
-              
+
               <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
                 {platform.name}
               </h3>
               <p className="text-sm text-muted-foreground font-mono mb-4">@{platform.username}</p>
-              
+
               <div className="pt-4 border-t border-border">
                 <p className={`text-2xl font-bold ${platform.textColor}`}>{platform.stat}</p>
                 <p className="text-xs text-muted-foreground">{platform.statLabel}</p>
@@ -75,7 +48,7 @@ const CodingProfiles = () => {
               GitHub Streak
             </h3>
             <img
-              src="https://streak-stats.demolab.com/?user=husainbw786&theme=nightowl&hide_border=true&background=00000000&currStreakNum=2FD3EB&fire=pink&sideLabels=F00"
+              src={coding_profiles.github_streak_url}
               alt="GitHub Streak Stats"
               className="w-full"
               loading="lazy"
@@ -85,14 +58,14 @@ const CodingProfiles = () => {
               }}
             />
           </div>
-          
+
           <div className="glass-card p-6 overflow-hidden">
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
               <span className="w-2 h-2 bg-accent rounded-full" />
               Top Languages
             </h3>
             <img
-              src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=husainbw786&theme=nightowl&layout=compact&hide_border=true&bg_color=00000000"
+              src={coding_profiles.top_languages_url}
               alt="Top Languages"
               className="w-full"
               loading="lazy"

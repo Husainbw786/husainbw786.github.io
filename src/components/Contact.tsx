@@ -1,6 +1,9 @@
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import portfolioData from '@/data/portfolio.json';
 
 const Contact = () => {
+  const { contact, personal } = portfolioData;
+
   return (
     <section id="contact" className="py-32">
       <div className="section-container">
@@ -12,8 +15,7 @@ const Contact = () => {
 
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-muted-foreground text-lg leading-relaxed mb-12">
-            I'm currently looking for new opportunities and my inbox is always open. Whether you have a question,
-            want to discuss AI/ML projects, or just want to say hi — I'll do my best to get back to you!
+            {contact.intro}
           </p>
 
           <div className="flex flex-wrap justify-center gap-8 mb-12">
@@ -24,10 +26,10 @@ const Contact = () => {
               <div className="text-left">
                 <p className="text-xs text-muted-foreground">Email</p>
                 <a
-                  href="mailto:husainbw123@gmail.com"
+                  href={`mailto:${personal.email}`}
                   className="text-sm font-medium hover:text-primary transition-colors"
                 >
-                  husainbw123@gmail.com
+                  {personal.email}
                 </a>
               </div>
             </div>
@@ -39,10 +41,10 @@ const Contact = () => {
               <div className="text-left">
                 <p className="text-xs text-muted-foreground">Phone</p>
                 <a
-                  href="tel:+919131318108"
+                  href={`tel:${contact.phone.replace(/\s+/g, '')}`}
                   className="text-sm font-medium hover:text-primary transition-colors"
                 >
-                  +91 9131318108
+                  {contact.phone}
                 </a>
               </div>
             </div>
@@ -53,13 +55,13 @@ const Contact = () => {
               </div>
               <div className="text-left">
                 <p className="text-xs text-muted-foreground">Location</p>
-                <p className="text-sm font-medium">Indore, India</p>
+                <p className="text-sm font-medium">{contact.location}</p>
               </div>
             </div>
           </div>
 
           <a
-            href="mailto:husainbw123@gmail.com"
+            href={`mailto:${personal.email}`}
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-primary text-primary-foreground font-semibold rounded-lg glow-effect-sm hover:scale-105 transition-transform duration-300"
           >
             <Send size={20} />
