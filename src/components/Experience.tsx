@@ -30,13 +30,18 @@ const Experience = () => {
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-primary rounded-full group-hover:scale-125 transition-transform" />
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                   <h3 className="text-xl font-semibold text-foreground">
-                    {job.position} <span className="text-primary">@ {job.company}</span>
+                    {job.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground flex items-center gap-2 whitespace-nowrap">
                     <Calendar className="w-4 h-4" />
                     {job.period}
-                  </p>
+                  </span>
                 </div>
+
+                <h4 className="text-lg font-medium text-primary mb-1">
+                  @ {job.company}
+                </h4>
+
                 <p className="text-sm text-muted-foreground flex items-center gap-2 mb-4">
                   <MapPin className="w-4 h-4" />
                   {job.location}
