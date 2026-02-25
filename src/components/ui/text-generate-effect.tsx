@@ -64,4 +64,3 @@ export const TextGenerateEffect = ({
   );
 };
 
-export default TextGenerateEffect;

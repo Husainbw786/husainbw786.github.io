@@ -70,7 +70,7 @@ export const BackgroundBeams = ({ className = "" }: { className?: string }) => {
           />
         ))}
       </svg>
-      
+
       {/* Floating orbs */}
       {[...Array(4)].map((_, i) => (
         <motion.div
@@ -81,7 +81,7 @@ export const BackgroundBeams = ({ className = "" }: { className?: string }) => {
             height: 100 + i * 50,
             left: `${20 + i * 20}%`,
             top: `${30 + (i % 2) * 20}%`,
-            background: i % 2 === 0 
+            background: i % 2 === 0
               ? "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%)"
               : "radial-gradient(circle, hsl(var(--accent) / 0.1) 0%, transparent 70%)",
           }}
@@ -102,4 +102,3 @@ export const BackgroundBeams = ({ className = "" }: { className?: string }) => {
   );
 };
 
-export default BackgroundBeams;

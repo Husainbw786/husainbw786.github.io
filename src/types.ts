@@ -10,7 +10,7 @@ export interface PersonalData {
     socials: SocialLink[];
 }
 
-export interface SocialLink {
+interface SocialLink {
     label: string;
     href: string;
     icon: string;
@@ -36,7 +36,7 @@ export interface AboutData {
     };
 }
 
-export interface HighlightData {
+interface HighlightData {
     label: string;
     desc: string;
     icon: string;
@@ -91,7 +91,7 @@ export interface AchievementData {
     borderColor: string;
 }
 
-export interface CodingProfilePlatform {
+interface CodingProfilePlatform {
     name: string;
     username: string;
     url: string;

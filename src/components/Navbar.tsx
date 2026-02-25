@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { usePortfolio } from "@/context/PortfolioContext";
 
+// Ensures a URL from the API is always absolute (adds https:// if protocol is missing)
+const toAbsoluteUrl = (url: string) => {
+  if (!url) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  return `https://${url}`;
+};
+
 const Navbar = () => {
   const [activeHash, setActiveHash] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -58,7 +65,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href={personal.resume_url}
+            href={toAbsoluteUrl(personal.resume_url)}
             target="_blank"
             className="px-4 py-2 border border-primary text-primary rounded-lg font-mono text-sm hover:bg-primary/10 transition-colors"
           >
@@ -88,7 +95,7 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href={personal.resume_url}
+              href={toAbsoluteUrl(personal.resume_url)}
               target="_blank"
               className="px-6 py-3 border border-primary text-primary rounded-lg font-mono hover:bg-primary/10 transition-colors w-fit"
             >
