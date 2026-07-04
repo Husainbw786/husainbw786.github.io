@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { PortfolioData } from "../types";
+import localData from "../data/portfolio.json";
 
 interface PortfolioContextType {
     data: PortfolioData | null;
@@ -10,8 +11,9 @@ interface PortfolioContextType {
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
 export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
-    const [data, setData] = useState<PortfolioData | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    // Render instantly from the bundled copy; refresh from the API in the background.
+    const [data, setData] = useState<PortfolioData | null>(localData as unknown as PortfolioData);
+    const [isLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
@@ -22,11 +24,12 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
                     throw new Error("Failed to fetch portfolio data");
                 }
                 const jsonData = await response.json();
-                setData(jsonData);
+                if (jsonData?.personal?.name) {
+                    setData(jsonData);
+                }
             } catch (err) {
+                // Keep showing the bundled copy
                 setError(err instanceof Error ? err : new Error("An error occurred"));
-            } finally {
-                setIsLoading(false);
             }
         };
 

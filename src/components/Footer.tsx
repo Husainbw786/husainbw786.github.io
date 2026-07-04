@@ -1,46 +1,23 @@
-
-import { Heart } from 'lucide-react';
-import * as LucideIcons from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
 
 const Footer = () => {
   const { data } = usePortfolio();
-
-  if (!data) return null;
-
-  const { personal } = data;
-
-  const getIcon = (iconName: string) => {
-    const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon size={20} /> : null;
-  };
+  const name = data?.personal.name ?? 'Husain Baghwala';
+  const socials = data?.personal.socials ?? [];
 
   return (
-    <footer className="py-12 border-t border-border">
-      <div className="section-container">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-6">
-            {personal.socials.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label={link.label}
-              >
-                {getIcon(link.icon)}
-              </a>
-            ))}
-          </div>
-
-          <p className="text-sm text-muted-foreground flex items-center gap-2">
-            Built with <Heart size={14} className="text-primary" /> by {personal.name}
-          </p>
-
-          <p className="text-sm font-mono text-muted-foreground">
-            © {new Date().getFullYear()}
-          </p>
+    <footer style={{ borderTop: '1px solid var(--bd)' }}>
+      <div
+        className="wrap mono"
+        style={{ padding: '34px clamp(20px,5vw,64px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 18, fontSize: 12.5, color: 'var(--mut)' }}
+      >
+        <span>© {new Date().getFullYear()} {name} — built with intent.</span>
+        <div style={{ display: 'flex', gap: 22 }}>
+          {socials.map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="link-accent-hover">
+              {s.label.toLowerCase()}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

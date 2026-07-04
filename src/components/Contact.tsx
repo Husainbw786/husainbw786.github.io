@@ -1,77 +1,38 @@
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
 
 const Contact = () => {
   const { data } = usePortfolio();
-
-  if (!data) return null;
-
-  const { contact, personal } = data;
+  const email = data?.personal.email ?? 'husainbw123@gmail.com';
+  const linkedin = data?.personal.socials.find((s) => s.label === 'LinkedIn')?.href;
+  const resume = data?.personal.resume_url;
+  const intro = data?.contact.intro ?? '';
 
   return (
-    <section id="contact" className="py-32">
-      <div className="section-container">
-        <h2 className="flex items-center gap-4 text-2xl md:text-3xl font-bold mb-8">
-          <span className="font-mono text-primary">05.</span>
-          Get In Touch
-          <span className="flex-1 h-px bg-border ml-4" />
-        </h2>
-
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-muted-foreground text-lg leading-relaxed mb-12">
-            {contact.intro}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-8 mb-12">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-primary/10 rounded-xl">
-                <Mail className="w-5 h-5 text-primary" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-muted-foreground">Email</p>
-                <a
-                  href={`mailto:${personal.email}`}
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  {personal.email}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-primary/10 rounded-xl">
-                <Phone className="w-5 h-5 text-primary" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-muted-foreground">Phone</p>
-                <a
-                  href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  {contact.phone}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-primary/10 rounded-xl">
-                <MapPin className="w-5 h-5 text-primary" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-muted-foreground">Location</p>
-                <p className="text-sm font-medium">{contact.location}</p>
-              </div>
-            </div>
-          </div>
-
-          <a
-            href={`mailto:${personal.email}`}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-primary text-primary-foreground font-semibold rounded-lg glow-effect-sm hover:scale-105 transition-transform duration-300"
-          >
-            <Send size={20} />
-            Say Hello
-          </a>
-        </div>
+    <section
+      id="contact"
+      className="wrap"
+      style={{ paddingTop: 'clamp(60px,10vh,120px)', paddingBottom: 'clamp(80px,12vh,140px)', borderTop: '1px solid var(--bd)', textAlign: 'center' }}
+    >
+      <div className="mono" style={{ fontSize: 13, color: 'var(--acc)', marginBottom: 22 }}>{'// 05 — let\'s build'}</div>
+      <h2 style={{ fontSize: 'clamp(42px,8vw,104px)', lineHeight: 0.95, letterSpacing: '-.03em', fontWeight: 600 }}>
+        Got something<br />in mind<span style={{ color: 'var(--acc)' }}>?</span>
+      </h2>
+      <p style={{ margin: '26px auto 0', maxWidth: '28em', fontSize: 'clamp(15px,1.6vw,18px)', color: 'var(--mut)', lineHeight: 1.6 }}>
+        {intro}
+      </p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 38 }}>
+        <a href={`mailto:${email}`} className="btn-primary">Say hello →</a>
+        {linkedin && (
+          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost">LinkedIn</a>
+        )}
+        {resume && (
+          <a href={resume} target="_blank" rel="noopener noreferrer" className="btn-ghost">Resume</a>
+        )}
+      </div>
+      <div className="mono" style={{ marginTop: 34, fontSize: 13, color: 'var(--mut)', display: 'flex', flexWrap: 'wrap', gap: 22, justifyContent: 'center' }}>
+        <span>{email}</span>
+        {data?.contact.phone && <span>{data.contact.phone}</span>}
+        {data?.contact.location && <span>{data.contact.location}</span>}
       </div>
     </section>
   );

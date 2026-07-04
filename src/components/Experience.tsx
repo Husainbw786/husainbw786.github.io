@@ -1,65 +1,58 @@
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { SectionHeader } from './shared';
 
 const Experience = () => {
   const { data } = usePortfolio();
-
-  if (!data) return null;
-
-  const { experience } = data;
+  const experience = data?.experience ?? [];
+  const achievements = data?.achievements ?? [];
 
   return (
-    <section id="experience" className="py-32 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 blur-3xl -z-10" />
+    <section id="experience" className="wrap" style={{ paddingTop: 'clamp(40px,7vh,90px)', paddingBottom: 'clamp(70px,11vh,130px)', borderTop: '1px solid var(--bd)' }}>
+      <SectionHeader num="03" label="the journey" title="Experience & education." />
 
-      <div className="section-container">
-        <h2 className="flex items-center gap-4 text-2xl md:text-3xl font-bold mb-16">
-          <span className="font-mono text-primary">02.</span>
-          Where I've Worked
-          <span className="flex-1 h-px bg-border ml-4" />
-        </h2>
-
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-12">
-            {experience.map((job, index) => (
-              <div
-                key={index}
-                className="relative pl-8 border-l-2 border-border hover:border-primary/50 transition-colors group"
-              >
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-primary rounded-full group-hover:scale-125 transition-transform" />
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    {job.title}
-                  </h3>
-                  <span className="text-sm text-muted-foreground flex items-center gap-2 whitespace-nowrap">
-                    <Calendar className="w-4 h-4" />
-                    {job.period}
-                  </span>
-                </div>
-
-                <h4 className="text-lg font-medium text-primary mb-1">
-                  @ {job.company}
-                </h4>
-
-                <p className="text-sm text-muted-foreground flex items-center gap-2 mb-4">
-                  <MapPin className="w-4 h-4" />
-                  {job.location}
-                </p>
-                <ul className="space-y-3">
-                  {job.points.map((point, i) => (
-                    <li key={i} className="flex gap-3 text-muted-foreground">
-                      <span className="text-primary mt-1.5">▹</span>
-                      <span className="leading-relaxed">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {experience.map((x) => (
+          <div key={`${x.title}-${x.company}`} className="xp-row">
+            <div>
+              <div className="mono" style={{ fontSize: 12, color: 'var(--acc)', marginBottom: 8 }}>{x.period}</div>
+              <div style={{ fontSize: 13, color: 'var(--mut)' }}>{x.title}</div>
+              {x.location && <div style={{ fontSize: 12, color: 'var(--mut)', marginTop: 4 }}>{x.location}</div>}
+            </div>
+            <div>
+              <h3 style={{ fontSize: 21, fontWeight: 600, letterSpacing: '-.015em', marginBottom: 14 }}>
+                {x.company}
+                {x.projectLink && (
+                  <a href={x.projectLink} target="_blank" rel="noopener noreferrer" className="mono link-accent-hover" style={{ fontSize: 13, color: 'var(--acc)', marginLeft: 12 }}>
+                    {x.projectName} ↗
+                  </a>
+                )}
+              </h3>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 9, margin: 0, padding: 0 }}>
+                {x.points.map((pt) => (
+                  <li key={pt} style={{ position: 'relative', paddingLeft: 20, fontSize: 14, lineHeight: 1.6, color: 'var(--mut)' }}>
+                    <span style={{ position: 'absolute', left: 0, top: 9, width: 6, height: 6, borderRadius: '50%', background: 'var(--acc)' }} />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-    </section >
+
+      <h3 className="mono" style={{ fontSize: 13, color: 'var(--mut)', textTransform: 'uppercase', letterSpacing: '.18em', margin: '56px 0 24px' }}>
+        {'// achievements'}
+      </h3>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 18 }}>
+        {achievements.map((a) => (
+          <div key={a.title} className="card card-hover" style={{ padding: 26, position: 'relative', overflow: 'hidden' }}>
+            <div className="mono" style={{ fontSize: 32, fontWeight: 700, color: 'var(--acc)', opacity: 0.25, position: 'absolute', top: 14, right: 18 }}>★</div>
+            <h4 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-.01em', marginBottom: 10, maxWidth: '18em' }}>{a.title}</h4>
+            <p style={{ fontSize: 13.5, lineHeight: 1.6, color: 'var(--mut)' }}>{a.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

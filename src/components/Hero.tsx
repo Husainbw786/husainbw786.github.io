@@ -1,228 +1,101 @@
-
-import { Github, Linkedin, Mail, Code2, Terminal } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { BackgroundBeams } from './ui/background-beams';
-import { TextGenerateEffect } from './ui/text-generate-effect';
-import * as LucideIcons from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { Count } from './shared';
+
+const termLine = (delay: number, color: string, text: string, pad = 0): React.CSSProperties & { text: string } => ({
+  animation: `slidein .5s ease ${delay}s both`,
+  color,
+  paddingLeft: pad,
+  text,
+});
 
 const Hero = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
   const { data } = usePortfolio();
+  const stats = data?.stats ?? [];
 
-  if (!data) return null;
+  const heroStats = [
+    { value: '500K+', label: 'agents powered on GTWY.ai' },
+    { value: '7M+', label: 'tasks automated' },
+    ...stats.map((s) => ({ value: s.value, label: [s.sublabel, s.label].filter(Boolean).join(' ') })),
+  ].slice(0, 4);
 
-  const { personal, stats } = data;
-  const { name, roles, company, company_url, about_short, socials } = personal;
-
-  useEffect(() => {
-    const role = roles[roleIndex];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < role.length) {
-          setDisplayText(role.slice(0, displayText.length + 1));
-        } else {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(displayText.slice(0, -1));
-        } else {
-          setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % personal.roles.length);
-        }
-      }
-    }, isDeleting ? 50 : 100);
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex, personal.roles]);
-
-  const getIcon = (iconName: string) => {
-    const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon size={22} /> : null;
-  };
-  const getStatIcon = (iconName: string, className: string) => {
-    const Icon = (LucideIcons as any)[iconName];
-    return Icon ? <Icon className={className || "w-5 h-5"} /> : null;
-  };
+  const lines = [
+    termLine(0.35, 'var(--acc)', '$ git log --grep="impact"'),
+    termLine(0.53, 'var(--tx)', '› Built the entire backend of GTWY.ai'),
+    termLine(0.71, 'var(--mut)', '» 500K+ active agents · 7M+ tasks automated', 14),
+    termLine(0.89, 'var(--tx)', '› Unified LLM API — <50ms · 99.99% uptime'),
+    termLine(1.07, 'var(--tx)', '› Real-time RAG engine @ 98% precision'),
+    termLine(1.25, 'var(--acc)', '$ ./stack --production'),
+    termLine(1.43, 'var(--mut)', '» FastAPI · LangChain · MCP · vector DBs'),
+  ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Beams Animation */}
-      <BackgroundBeams className="z-0" />
-
-      {/* Background Glow Effects */}
-      <motion.div
-        className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px]"
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.1, 0.15, 0.1],
-        }}
-        transition={{
-          duration: 6,
-          delay: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-      <div className="section-container relative z-10 py-32">
-        <div className="max-w-4xl">
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Terminal size={14} className="text-primary" />
-            <span className="font-mono text-sm text-primary">Available for opportunities</span>
-          </motion.div>
-
-          <motion.p
-            className="font-mono text-primary mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Hi, my name is
-          </motion.p>
-
-          {/* Name */}
-          <motion.h1
-            className="text-5xl md:text-7xl font-bold text-foreground mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {personal.name}.
-          </motion.h1>
-
-          {/* Animated Subtitle */}
-          <TextGenerateEffect
-            words={personal.tagline}
-            className="text-xl md:text-2xl text-muted-foreground mb-4"
-            duration={0.4}
-          />
-
-          <motion.h2
-            className="text-3xl md:text-5xl font-bold text-muted-foreground mb-2 flex items-center gap-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            I'm a{' '}
-            <span className="text-gradient inline-flex items-center">
-              {displayText}
-              <motion.span
-                className="w-0.5 h-8 md:h-12 bg-primary ml-1"
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-              />
-            </span>
-          </motion.h2>
-
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            dangerouslySetInnerHTML={{ __html: personal.about_short }}
-          />
-
-          {/* Stats */}
-          <motion.div
-            className="flex flex-wrap gap-6 mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="glass-card px-5 py-3 flex items-center gap-3"
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {stat.icon ? getStatIcon(stat.icon, `${stat.color} w-5 h-5`) : (
-                  <span className={`text-xl font-bold ${stat.color}`}>{stat.value}</span>
-                )}
-                <div>
-                  {stat.icon && stat.value && <p className="text-2xl font-bold">{stat.value}</p>}
-                  <p className={stat.value && stat.icon ? "text-xs text-muted-foreground" : (!stat.icon ? "text-sm font-semibold" : "text-sm font-semibold")}>{stat.label}</p>
-                  {stat.sublabel && <p className="text-xs text-muted-foreground">{stat.sublabel}</p>}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="flex flex-wrap items-center gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <motion.a
-              href="#contact"
-              className="px-8 py-4 bg-gradient-primary text-primary-foreground font-semibold rounded-lg glow-effect-sm"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get In Touch
-            </motion.a>
-
-            <div className="flex items-center gap-4">
-              {personal.socials.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.href}
-                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="p-3 border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                  aria-label={link.label}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {getIcon(link.icon)}
-                </motion.a>
-              ))}
+    <header id="top" className="wrap hero-grid" style={{ paddingTop: 'clamp(120px,16vh,180px)', paddingBottom: 'clamp(40px,7vh,90px)' }}>
+      <div>
+        <div
+          className="mono"
+          style={{
+            animation: 'rise .7s ease both',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 10,
+            fontSize: 12.5,
+            color: 'var(--acc)',
+            padding: '7px 14px',
+            border: '1px solid var(--bd)',
+            borderRadius: 999,
+            background: 'var(--panel)',
+            marginBottom: 28,
+          }}
+        >
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--acc)', boxShadow: '0 0 8px var(--acc)', animation: 'pulseglow 2s ease-in-out infinite' }} />
+          available for opportunities
+        </div>
+        <h1 style={{ animation: 'rise .8s ease .05s both', fontSize: 'clamp(46px,8.2vw,108px)', lineHeight: 0.92, letterSpacing: '-.03em', fontWeight: 600 }}>
+          AI<br />engineer<span style={{ color: 'var(--acc)' }}>.</span><br />
+          <span style={{ color: 'var(--mut)', fontWeight: 400 }}>Backend developer<span style={{ color: 'var(--acc)' }}>.</span></span>
+        </h1>
+        <p style={{ animation: 'rise .8s ease .12s both', marginTop: 26, maxWidth: '30em', fontSize: 'clamp(15px,1.5vw,18px)', lineHeight: 1.6, color: 'var(--mut)' }}>
+          I build AI-first products end to end — LLM APIs, RAG pipelines, and autonomous agents. Built the backend powering 500K+ agents and 7M+ automated tasks at{' '}
+          <a href={data?.personal.company_url ?? 'https://walkover.in'} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--acc)' }}>
+            Walkover
+          </a>.
+        </p>
+        <div style={{ animation: 'rise .8s ease .18s both', display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 34 }}>
+          <a href="#work" className="btn-primary">View my work →</a>
+          <a href="#contact" className="btn-ghost">Get in touch</a>
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(22px,4vw,52px)', marginTop: 'clamp(40px,6vh,64px)' }}>
+          {heroStats.map((s, i) => (
+            <div key={s.label} style={{ animation: `rise .7s ease ${0.24 + i * 0.06}s both` }}>
+              <Count value={s.value} style={{ fontSize: 'clamp(28px,3.4vw,42px)', fontWeight: 700, color: 'var(--tx)' }} />
+              <div style={{ fontSize: 12.5, color: 'var(--mut)', marginTop: 4 }}>{s.label}</div>
             </div>
-          </motion.div>
+          ))}
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-primary rounded-full mt-2"
-            animate={{ opacity: [1, 0.3, 1], y: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
+      <div style={{ animation: 'risecard .9s ease .15s both' }}>
+        <div className="card" style={{ overflow: 'hidden', boxShadow: '0 40px 80px -30px rgba(0,0,0,.7)', animation: 'floaty 7s ease-in-out infinite' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '13px 16px', borderBottom: '1px solid var(--bd)', background: 'var(--panel2)' }}>
+            <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#ff5f57' }} />
+            <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#febc2e' }} />
+            <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#28c840' }} />
+            <span className="mono" style={{ marginLeft: 10, fontSize: 12, color: 'var(--mut)' }}>husain@portfolio: ~</span>
+          </div>
+          <div className="mono" style={{ padding: '22px 22px 26px', fontSize: 13, lineHeight: 1.85 }}>
+            {lines.map(({ text, ...style }, i) => (
+              <div key={i} style={{ ...style, marginTop: text.startsWith('$') && i > 0 ? 14 : text.startsWith('›') && i === 1 ? 6 : 0 }}>
+                {text}
+              </div>
+            ))}
+            <div style={{ animation: 'slidein .5s ease 1.61s both', color: 'var(--acc)', marginTop: 14 }}>
+              ${' '}
+              <span style={{ display: 'inline-block', width: 9, height: 16, background: 'var(--acc)', verticalAlign: 'middle', animation: 'blink 1.1s step-end infinite' }} />
+            </div>
+          </div>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </header>
   );
 };
 

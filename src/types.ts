@@ -61,6 +61,7 @@ export interface ProjectData {
     icon: string;
     github?: string;
     link?: string;
+    image?: string;
     gradient: string;
     featured: boolean;
     flagship?: boolean;

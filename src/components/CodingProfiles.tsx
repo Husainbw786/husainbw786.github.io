@@ -1,85 +1,50 @@
-import { ExternalLink } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { Count, SectionHeader } from './shared';
 
 const CodingProfiles = () => {
   const { data } = usePortfolio();
-
-  if (!data) return null;
-
-  const { coding_profiles } = data;
+  const profiles = data?.coding_profiles;
+  if (!profiles) return null;
 
   return (
-    <section id="coding" className="py-20">
-      <div className="section-container">
-        <h2 className="flex items-center gap-4 text-2xl md:text-3xl font-bold mb-12">
-          <span className="font-mono text-primary">02.</span>
-          Coding Profiles
-          <span className="flex-1 h-px bg-border ml-4" />
-        </h2>
+    <section className="wrap" style={{ paddingTop: 'clamp(40px,7vh,90px)', paddingBottom: 'clamp(70px,11vh,130px)', borderTop: '1px solid var(--bd)' }}>
+      <SectionHeader num="04" label="competitive coding" title="365+ days of DSA, every single day." maxWidth="16em" />
 
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {coding_profiles.platforms.map((platform) => (
-            <a
-              key={platform.name}
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass-card p-6 hover:border-primary/50 transition-all duration-300 group"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className={`w-3 h-3 rounded-full ${platform.color}`} />
-                <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-
-              <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
-                {platform.name}
-              </h3>
-              <p className="text-sm text-muted-foreground font-mono mb-4">@{platform.username}</p>
-
-              <div className="pt-4 border-t border-border">
-                <p className={`text-2xl font-bold ${platform.textColor}`}>{platform.stat}</p>
-                <p className="text-xs text-muted-foreground">{platform.statLabel}</p>
-              </div>
-            </a>
-          ))}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 18 }}>
+        {profiles.platforms.map((p) => (
+          <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="card card-hover" style={{ padding: '28px 24px', display: 'block' }}>
+            <Count value={p.stat} style={{ fontSize: 'clamp(34px,4vw,48px)', fontWeight: 700, color: 'var(--tx)' }} />
+            <div style={{ fontSize: 15, fontWeight: 500, margin: '10px 0 6px' }}>{p.name}</div>
+            <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--mut)' }}>
+              {p.statLabel} · <span className="mono" style={{ fontSize: 12 }}>@{p.username}</span>
+            </p>
+          </a>
+        ))}
+        <div className="card card-hover" style={{ padding: '28px 24px' }}>
+          <Count value="365+" style={{ fontSize: 'clamp(34px,4vw,48px)', fontWeight: 700, color: 'var(--tx)' }} />
+          <div style={{ fontSize: 15, fontWeight: 500, margin: '10px 0 6px' }}>Day Streak</div>
+          <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--mut)' }}>Daily DSA practice across GFG & LeetCode.</p>
         </div>
+      </div>
 
-        {/* GitHub Stats */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="glass-card p-6 overflow-hidden">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-primary rounded-full" />
-              GitHub Streak
-            </h3>
+      <div style={{ marginTop: 34, display: 'flex', flexWrap: 'wrap', gap: 20 }}>
+        {[
+          { src: profiles.github_streak_url, alt: 'GitHub streak', flex: '1 1 380px' },
+          { src: profiles.top_languages_url, alt: 'Top languages', flex: '1 1 300px' },
+        ].map((img) => (
+          <div key={img.alt} className="card" style={{ padding: 20, flex: img.flex, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img
-              src={coding_profiles.github_streak_url}
-              alt="GitHub Streak Stats"
-              className="w-full"
+              src={img.src}
+              alt={img.alt}
+              style={{ maxWidth: '100%' }}
               loading="lazy"
               onError={(e) => {
-                const target = e.currentTarget;
-                target.src = "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=husainbw786&theme=nord_dark";
+                const card = e.currentTarget.parentElement;
+                if (card) card.style.display = 'none';
               }}
             />
           </div>
-
-          <div className="glass-card p-6 overflow-hidden">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-accent rounded-full" />
-              Top Languages
-            </h3>
-            <img
-              src={coding_profiles.top_languages_url}
-              alt="Top Languages"
-              className="w-full"
-              loading="lazy"
-              onError={(e) => {
-                const target = e.currentTarget;
-                target.src = "https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=husainbw786&theme=nord_dark";
-              }}
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

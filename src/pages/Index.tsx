@@ -1,30 +1,32 @@
 import { Helmet } from 'react-helmet-async';
+import Effects from '@/components/Effects';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import CodingProfiles from '@/components/CodingProfiles';
-import Experience from '@/components/Experience';
+import Marquee from '@/components/Marquee';
+import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
-import Achievements from '@/components/Achievements';
+import Experience from '@/components/Experience';
+import CodingProfiles from '@/components/CodingProfiles';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { usePortfolio } from '@/context/PortfolioContext';
-import { Loader2 } from 'lucide-react';
 
 const Index = () => {
-  const { data, isLoading, error } = usePortfolio();
+  const { data, isLoading } = usePortfolio();
 
   if (isLoading) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-background">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)' }}>
+        <span className="mono" style={{ color: 'var(--acc)', fontSize: 14 }}>
+          $ loading portfolio<span style={{ animation: 'blink 1.1s step-end infinite' }}>_</span>
+        </span>
       </div>
     );
   }
 
-  if (error || !data) {
+  if (!data) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-background text-red-500">
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg)', color: '#f87171' }}>
         Failed to load portfolio data. Please try again later.
       </div>
     );
@@ -36,32 +38,24 @@ const Index = () => {
     <>
       <Helmet>
         <title>{meta.title}</title>
-        <meta
-          name="description"
-          content={meta.description}
-        />
-        <meta
-          name="keywords"
-          content={meta.keywords}
-        />
+        <meta name="description" content={meta.description} />
+        <meta name="keywords" content={meta.keywords} />
         <meta property="og:title" content={meta.og_title} />
-        <meta
-          property="og:description"
-          content={meta.og_description}
-        />
+        <meta property="og:description" content={meta.og_description} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href={meta.canonical_url} />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <Effects />
+      <div style={{ position: 'relative', zIndex: 2 }}>
         <Navbar />
         <main>
           <Hero />
-          <About />
-          <CodingProfiles />
-          <Experience />
+          <Marquee />
+          <Skills />
           <Projects />
-          <Achievements />
+          <Experience />
+          <CodingProfiles />
           <Contact />
         </main>
         <Footer />

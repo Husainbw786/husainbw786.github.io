@@ -11,7 +11,7 @@
         "about_short": "Building <span class=\"text-primary\">AI-powered</span> solutions at <a href=\"https://walkover.in\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-primary hover:underline\">Walkover Web Solutions</a>. Specializing in LLM integration, RAG pipelines, and intelligent backend systems.",
         "company": "Walkover Web Solutions",
         "company_url": "https://walkover.in",
-        "resume_url": "https://app.rezi.ai/s/husainbw",
+        "resume_url": "https://app.rezi.ai/s/husain-baghwala",
         "email": "husainbw123@gmail.com",
         "socials": [
             {
@@ -106,6 +106,7 @@
                 "Express.js",
                 "Flask",
                 "LangChain",
+                "LangSmith",
                 "OpenCV",
                 "Pandas",
                 "NumPy"
@@ -122,12 +123,29 @@
             ],
             "ai": [
                 "LangChain",
+                "LangGraph",
+                "Langsmith",
                 "HuggingFace",
                 "OpenAI",
                 "RAG",
                 "MCP",
                 "Prompt Engineering",
-                "AI Agents"
+                "AI Agents",
+                "AI Workflow Orchestration",
+                "Multi-Agent Systems",
+                "Agent Role Design",
+                "Agent Coordination Logic",
+                "Shared Memory & Context",
+                "Tool Calling",
+                "Human-in-the-Loop Systems",
+                "Guardrails & Safety Controls",
+                "Retries & Fallback Mechanisms",
+                "Retrieval-Augmented Generation Pipelines",
+                "Document Ingestion & Chunking",
+                "Embeddings Management",
+                "Vector Similarity Search",
+                "Context Window Optimization",
+                "RAG Evaluation & Tuning"
             ],
             "databases": [
                 "MongoDB",
@@ -141,7 +159,7 @@
         {
             "title": "AI Engineer",
             "company": "Walkover Web Solutions",
-            "period": "June 2024 - Present",
+            "period": "Janurary 2024 - Present",
             "location": "Indore",
             "type": "work",
             "highlight": true,
@@ -160,13 +178,14 @@
         {
             "title": "Software Engineer Intern",
             "company": "Walkover Web Solutions",
-            "period": "January 2024 - May 2024",
+            "period": "July 2023 - December 2023",
             "location": "Indore",
-            "type": "work",
+            "type": "internship",
+            "highlight": false,
             "points": [
-                "Mastered sophisticated Git features and branching strategies, improving codebase efficiency by 15%",
-                "Developed and debugged new features, boosting user engagement by 20% using Node.js and Python",
-                "Refactored project architecture from Node.js to Python/FastAPI, achieving 25% improvement in LLM integration"
+                "🚀 Built and maintained REST APIs using Node.js and Python, learning real-world backend development practices",
+                "🧠 Studied LLM documentation and assisted in integrating LLM/AI APIs into backend systems",
+                "🛠️ Gained hands-on experience with Git/GitHub for version control, collaboration, and code management"
             ]
         },
         {
@@ -247,62 +266,56 @@
             ],
             "icon": "Globe",
             "link": "https://viasocket.com/",
+            "image": "/previews/viasocket.jpg",
             "gradient": "from-accent to-primary",
             "featured": true
         },
         {
-            "title": "Resume Crafter",
-            "description": "An intelligent resume building tool with AI-powered suggestions for crafting professional resumes tailored to specific job requirements.",
+            "title": "WhatsApp Campaign Automation",
+            "description": "A web app for running personalised WhatsApp campaigns at scale — upload a CSV of contacts, personalise messages with {{name}} templates, and send in safe paced batches. Supports multiple WhatsApp accounts, campaign scheduling, group invite-link recovery, and per-contact sent tracking so nobody receives the same campaign twice. Licensed product with a guided no-code setup for non-technical users.",
             "tech": [
-                "JavaScript",
                 "Node.js",
-                "AI Integration",
-                "REST API"
+                "JavaScript",
+                "Express.js",
+                "WhatsApp Web",
+                "Automation"
             ],
-            "icon": "FileText",
-            "github": "https://github.com/Husainbw786/Resume-Crafter",
-            "gradient": "from-primary to-cyan-400",
-            "featured": false
+            "icon": "MessageCircle",
+            "github": "https://github.com/Husainbw786/whatsapp-apis",
+            "gradient": "from-green-400 to-primary",
+            "featured": true
         },
         {
-            "title": "Analytics Dashboard",
-            "description": "Full-stack dashboard application for visualizing and analyzing business metrics with real-time data updates and interactive charts.",
+            "title": "BW Inventory - Shop Billing",
+            "description": "A shop inventory and billing app for managing stock and generating bills in real time. Built with TanStack Start and React on a Supabase backend, with CI/CD via GitHub Actions auto-deploying every push to Cloudflare Workers at the edge.",
             "tech": [
                 "TypeScript",
                 "React",
-                "Node.js",
-                "MongoDB"
+                "TanStack Start",
+                "Supabase",
+                "Cloudflare Workers"
             ],
-            "icon": "BarChart3",
-            "github": "https://github.com/Husainbw786/Dashboard",
+            "icon": "Package",
+            "link": "https://tanstack-start-app.bw-inventory.workers.dev",
+            "github": "https://github.com/Husainbw786/Bw-inventory",
             "gradient": "from-cyan-400 to-accent",
             "featured": false
         },
         {
-            "title": "LeetCode Solutions",
-            "description": "Repository of optimized solutions to LeetCode problems, demonstrating proficiency in data structures, algorithms, and competitive programming.",
+            "title": "Trip Splitter - Expense Tracker",
+            "description": "A mobile-friendly app to split group and family trip expenses. Keep a reusable people roster, log expenses per trip with flexible sharing, and get an automatic \"who pays whom\" settlement that minimises the number of transfers. Single Next.js codebase with a Turso (cloud SQLite) database so the whole family sees the same totals from their own phones.",
             "tech": [
-                "C++",
-                "Algorithms",
-                "Data Structures"
-            ],
-            "icon": "Code",
-            "github": "https://github.com/Husainbw786/LeetCode",
-            "gradient": "from-yellow-400 to-orange-500",
-            "featured": false
-        },
-        {
-            "title": "Employee Management System",
-            "description": "A comprehensive system for managing employee data, including CRUD operations, search functionality, and data analytics.",
-            "tech": [
+                "Next.js",
                 "TypeScript",
-                "React",
-                "Node.js",
-                "PostgreSQL"
+                "SQLite",
+                "Turso",
+                "Vercel"
             ],
-            "icon": "Layers",
-            "github": "https://github.com/Husainbw786/Employee-Management-System",
-            "gradient": "from-green-400 to-primary",
+            "icon": "Wallet",
+            "link": "https://expense-tracker-seven-iota-68.vercel.app",
+            "image": "/previews/trip-splitter.jpg",
+            "github": "https://github.com/Husainbw786/expense-tracker",
+            "gradient": "from-primary to-cyan-400",
             "featured": false
         }
     ],
