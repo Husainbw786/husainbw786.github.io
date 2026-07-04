@@ -2,9 +2,24 @@ import { usePortfolio } from '@/context/PortfolioContext';
 import { Count, SectionHeader } from './shared';
 import type { ProjectData } from '@/types';
 
-/** Bundled screenshot when provided, GitHub social card otherwise. */
+/** Landing-page screenshots bundled with the site, keyed by live-URL hostname. */
+const STATIC_PREVIEWS: Record<string, string> = {
+  'viasocket.com': '/previews/viasocket.jpg',
+  'expense-tracker-seven-iota-68.vercel.app': '/previews/trip-splitter.jpg',
+  'tanstack-start-app.bw-inventory.workers.dev': '/previews/bw-inventory.jpg',
+};
+
+/** Bundled screenshot when available, GitHub social card otherwise. */
 const previewUrl = (p: ProjectData) => {
   if (p.image) return p.image;
+  if (p.link) {
+    try {
+      const host = new URL(p.link).hostname;
+      if (STATIC_PREVIEWS[host]) return STATIC_PREVIEWS[host];
+    } catch {
+      /* ignore malformed URLs */
+    }
+  }
   if (p.github) {
     const repo = p.github.replace(/\/+$/, '').split('github.com/')[1];
     if (repo) return `https://opengraph.githubassets.com/1/${repo}`;

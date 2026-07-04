@@ -297,6 +297,7 @@
             ],
             "icon": "Package",
             "link": "https://tanstack-start-app.bw-inventory.workers.dev",
+            "image": "/previews/bw-inventory.jpg",
             "github": "https://github.com/Husainbw786/Bw-inventory",
             "gradient": "from-cyan-400 to-accent",
             "featured": false
