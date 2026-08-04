@@ -8,7 +8,7 @@ const CodingProfiles = () => {
 
   return (
     <section className="wrap" style={{ paddingTop: 'clamp(40px,7vh,90px)', paddingBottom: 'clamp(70px,11vh,130px)', borderTop: '1px solid var(--bd)' }}>
-      <SectionHeader num="04" label="competitive coding" title="365+ days of DSA, every single day." maxWidth="16em" />
+      <SectionHeader num="05" label="competitive coding" title="365+ days of DSA, every single day." maxWidth="16em" />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 18 }}>
         {profiles.platforms.map((p) => (

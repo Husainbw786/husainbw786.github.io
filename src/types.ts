@@ -83,6 +83,17 @@ export interface ContactData {
     location: string;
 }
 
+export interface CertificationData {
+    title: string;
+    issuer: string;
+    issued: string;
+    expires?: string;
+    url: string;
+    /** Optional screenshot of the certificate; falls back to the issuer logo panel. */
+    image?: string;
+    topics?: string[];
+}
+
 export interface AchievementData {
     icon: string;
     title: string;
@@ -116,6 +127,7 @@ export interface PortfolioData {
     projects: ProjectData[];
     meta: MetaData;
     contact: ContactData;
+    certifications: CertificationData[];
     achievements: AchievementData[];
     coding_profiles: CodingProfilesData;
 }

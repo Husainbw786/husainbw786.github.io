@@ -25,7 +25,8 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
                 }
                 const jsonData = await response.json();
                 if (jsonData?.personal?.name) {
-                    setData(jsonData);
+                    // Remote wins per key, bundled copy fills in sections the API doesn't serve yet.
+                    setData({ ...(localData as unknown as PortfolioData), ...jsonData });
                 }
             } catch (err) {
                 // Keep showing the bundled copy

@@ -323,7 +323,7 @@
     "meta": {
         "title": "Husain Baghwala | AI Engineer & Full Stack Developer",
         "description": "AI Engineer at Walkover Web Solutions specializing in LLM integration, LangChain, RAG pipelines, and full-stack development with Node.js and Python. Top 19% LeetCode, #1 GFG University Rank.",
-        "keywords": "Husain Baghwala, AI Engineer, Full Stack Developer, LangChain, Python, Node.js, LLM, RAG, Machine Learning, LeetCode, GeeksForGeeks",
+        "keywords": "Husain Baghwala, AI Engineer, Full Stack Developer, LangChain, Python, Node.js, LLM, RAG, Machine Learning, LeetCode, GeeksForGeeks, Anthropic Certified, OpenAI Certified, Model Context Protocol, MCP, Claude API",
         "og_title": "Husain Baghwala | AI Engineer",
         "og_description": "AI Engineer specializing in LLM integration and full-stack development. Top 19% LeetCode.",
         "canonical_url": "https://husainbaghwala.dev"
@@ -333,6 +333,86 @@
         "phone": "+91 9131318108",
         "location": "Indore, India"
     },
+    "certifications": [
+        {
+            "title": "Building with the Claude API",
+            "issuer": "Anthropic",
+            "issued": "Jul 2026",
+            "expires": "Does not expire",
+            "url": "https://verify.skilljar.com/c/tx86zsmur7we",
+            "topics": [
+                "Claude API",
+                "Tool Use",
+                "Prompt Engineering"
+            ],
+            "image": "/certificates/claude-api.jpg"
+        },
+        {
+            "title": "Model Context Protocol: Advanced Topics",
+            "issuer": "Anthropic",
+            "issued": "Jul 2026",
+            "expires": "Does not expire",
+            "url": "https://verify.skilljar.com/c/2h8vmfphfosb",
+            "topics": [
+                "MCP Servers",
+                "Sampling",
+                "Transports"
+            ],
+            "image": "/certificates/mcp-advanced.jpg"
+        },
+        {
+            "title": "Introduction to Model Context Protocol",
+            "issuer": "Anthropic",
+            "issued": "Jul 2026",
+            "expires": "Does not expire",
+            "url": "https://verify.skilljar.com/c/pgq3oompagg2",
+            "topics": [
+                "MCP",
+                "Tools & Resources",
+                "Clients"
+            ],
+            "image": "/certificates/mcp-intro.jpg"
+        },
+        {
+            "title": "Agents and Workflows",
+            "issuer": "OpenAI",
+            "issued": "Jun 2026",
+            "expires": "Does not expire",
+            "url": "https://academy.openai.com/home/certificate/lmqnpqwsyn",
+            "topics": [
+                "AI Agents",
+                "Orchestration",
+                "Guardrails"
+            ],
+            "image": "/certificates/openai-agents-workflows.png"
+        },
+        {
+            "title": "Applied AI Foundations",
+            "issuer": "OpenAI",
+            "issued": "Jun 2026",
+            "expires": "Does not expire",
+            "url": "https://academy.openai.com/home/certificate/1uce4ktyjh",
+            "topics": [
+                "Applied AI",
+                "LLM Use Cases",
+                "Evaluation"
+            ],
+            "image": "/certificates/openai-applied-ai.png"
+        },
+        {
+            "title": "AI Foundations",
+            "issuer": "OpenAI",
+            "issued": "Jun 2026",
+            "expires": "Does not expire",
+            "url": "https://academy.openai.com/home/certificate/zqjdu9pw6w",
+            "topics": [
+                "AI Fundamentals",
+                "Models",
+                "Responsible AI"
+            ],
+            "image": "/certificates/openai-ai-foundations.png"
+        }
+    ],
     "achievements": [
         {
             "icon": "Trophy",
