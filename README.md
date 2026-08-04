@@ -1,73 +1,129 @@
-# Welcome to your Lovable project
+# Husain Baghwala — Portfolio
 
-## Project info
+Personal portfolio site: dark lime theme, terminal-style hero, live project previews, and verifiable AI certifications.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Live:** https://husain-bw.vercel.app
 
-## How can I edit this code?
+Built with Vite + React + TypeScript and Tailwind. All content is data-driven — the sections render from a single JSON document, so copy changes don't touch component code.
 
-There are several ways of editing your application.
+## Stack
 
-**Use Lovable**
+| | |
+| --- | --- |
+| Build | Vite 5, `@vitejs/plugin-react-swc` |
+| UI | React 18, TypeScript |
+| Styling | Tailwind CSS + design tokens in [src/index.css](src/index.css); components are hand-rolled with inline styles, no component library |
+| Routing | react-router-dom (`/` and a catch-all 404) |
+| Head tags | react-helmet-async, driven by `meta` in the portfolio JSON |
+| Fonts | Space Grotesk (display), JetBrains Mono (mono) |
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting started
 
-Changes made via Lovable will be committed automatically to this repo.
+Requires Node.js 20+.
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The dev server runs on http://localhost:8080.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Vite dev server with HMR |
+| `npm run build` | Production build to `dist/` |
+| `npm run build:dev` | Build with development mode settings |
+| `npm run preview` | Serve the built `dist/` locally |
+| `npm run lint` | ESLint over the repo |
 
-**Use GitHub Codespaces**
+## Where the content lives
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Content comes from **two sources that get merged**, in [src/context/PortfolioContext.tsx](src/context/PortfolioContext.tsx):
 
-## What technologies are used for this project?
+1. **[src/data/portfolio.json](src/data/portfolio.json)** — bundled with the build, renders instantly on first paint.
+2. **`https://flow.sokt.io/func/scrifmnYUDgV`** — fetched on mount, so content can be edited without a redeploy.
 
-This project is built with:
+The merge is **shallow, per top-level key**: `{ ...bundledJSON, ...remoteResponse }`. Two consequences worth remembering:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- If the endpoint returns a key, **the endpoint wins for that whole key** — editing e.g. `meta` in the bundled file has no effect on the live page.
+- If the endpoint *omits* a key, the bundled file supplies it. This is how `certifications` currently reaches the page.
 
-## How can I deploy this project?
+So: to change content that the endpoint already serves, edit the endpoint. Keep the bundled file in sync anyway — it's the first paint and the fallback when the fetch fails.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Shapes for both live in [src/types.ts](src/types.ts).
 
-## Can I connect a custom domain to my Lovable project?
+## Sections
 
-Yes, you can!
+Each component reads one key from the JSON:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+| Component | JSON key |
+| --- | --- |
+| [Hero](src/components/Hero.tsx), [Marquee](src/components/Marquee.tsx) | `personal`, `stats` |
+| [Skills](src/components/Skills.tsx) — `// 01` | `about.skills` |
+| [Projects](src/components/Projects.tsx) — `// 02` | `projects` |
+| [Experience](src/components/Experience.tsx) — `// 03` | `experience`, `achievements` |
+| [Certifications](src/components/Certifications.tsx) — `// 04` | `certifications` |
+| [CodingProfiles](src/components/CodingProfiles.tsx) — `// 05` | `coding_profiles` |
+| [Contact](src/components/Contact.tsx) | `contact`, `personal.socials` |
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Adding a certification
+
+Append to `certifications`:
+
+```json
+{
+  "title": "Building with the Claude API",
+  "issuer": "Anthropic",
+  "issued": "Jul 2026",
+  "expires": "Does not expire",
+  "url": "https://verify.skilljar.com/c/tx86zsmur7we",
+  "image": "/certificates/claude-api.jpg",
+  "topics": ["Claude API", "Tool Use", "Prompt Engineering"]
+}
+```
+
+`image` is optional — without it the card falls back to a panel with the issuer's logo and wordmark, using the `ISSUERS` map in [Certifications.tsx](src/components/Certifications.tsx). Add an entry there for a new issuer.
+
+**Getting the certificate scan.** Both issuers expose it publicly on the verify page, but the URLs are signed and expire, so the image has to be downloaded and committed to `public/certificates/`:
+
+```bash
+curl -sL "https://verify.skilljar.com/c/<CERT_ID>" | grep -o 'https://cc\.sj-cdn\.net/certificate/[^"]*\.jpg[^"]*' | head -1 | sed 's/&amp;/\&/g'
+```
+
+OpenAI Academy exposes it the same way, via `og:image` on `https://academy.openai.com/home/certificate/<CERT_ID>`. Download the result and resize before committing — the originals are 3300px wide:
+
+```bash
+sips -Z 1200 -s formatOptions 72 public/certificates/*.jpg
+```
+
+## Adding a project
+
+Append to `projects`. Card previews resolve in this order, in [Projects.tsx](src/components/Projects.tsx):
+
+1. `image` — a path under `public/`
+2. a bundled screenshot matched by the hostname of `link` (`STATIC_PREVIEWS`)
+3. the GitHub social card for `github`, via `opengraph.githubassets.com`
+
+Set `"flagship": true` to render the wide stats card at the top of the section instead of a grid card.
+
+## Deploying
+
+### Vercel (primary)
+
+Deploys are pushed from the CLI and are **not** connected to this Git repo, so a `git push` alone won't update the site:
+
+```bash
+npx vercel@latest --prod --yes
+```
+
+To get push-to-deploy instead, import the repo once at vercel.com → Add New → Project.
+
+### GitHub Pages
+
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml) builds on every push to `main` and publishes `dist/` to the `gh-pages` branch. For this to serve, **Settings → Pages → Source must point at the `gh-pages` branch**. Pointing it at `main` serves the unbuilt `index.html`, which references `/src/main.tsx` and renders a blank page.
+
+## Known loose ends
+
+- `framer-motion` and `lucide-react` are in `package.json` but nothing imports them.
+- `components.json` is a leftover shadcn/ui config; the UI components it points at were removed.
+- `meta.canonical_url` and the canonical tag in `index.html` point at `husainbaghwala.dev`, which does not currently resolve.
